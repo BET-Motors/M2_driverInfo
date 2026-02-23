@@ -1,0 +1,26 @@
+CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:104:18:virtual void touchgfx::Screen::afterTransition()	0	static
+CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:154:18:virtual void touchgfx::Screen::handleKeyEvent(uint8_t)	0	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:283:6:virtual void Screen1View::tearDownScreen()	0	static
+CM7/TouchGFX/gui/include/gui/screen1_screen/Screen1View.hpp:13:13:Screen1View::~Screen1View()	8	static
+CM7/TouchGFX/gui/include/gui/screen1_screen/Screen1View.hpp:13:13:virtual Screen1View::~Screen1View()	8	static
+CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextureMapper.hpp:216:18:virtual void touchgfx::TextureMapper::updateZAngle(float)	0	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:5:1:Screen1View::Screen1View()	8	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:50:6:void Screen1View::updateMilStatus(uint8_t)	0	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:9:6:virtual void Screen1View::setupScreen()	16	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:82:6:void Screen1View::updateRangeRemaining(uint16_t)	8	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:87:6:void Screen1View::updateLvHvVoltage(uint16_t, uint16_t)	16	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:94:6:void Screen1View::showGearSelect(uint8_t)	8	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:131:6:void Screen1View::updateSteeringAndWheelAngle(uint16_t, uint16_t)	40	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:170:6:void Screen1View::updateAccel(uint16_t, uint16_t)	16	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:176:6:void Screen1View::updateSysEff(uint16_t, uint16_t)	16	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:183:6:void Screen1View::updateFlTorqueAndPower(uint32_t, uint32_t)	16	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:189:6:void Screen1View::updateFrTorqueAndPower(uint32_t, uint32_t)	16	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:195:6:void Screen1View::updateRlRrTorqueAndPower(uint32_t, uint32_t, uint32_t)	24	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:235:6:void Screen1View::updateDrivetrainStatus(uint8_t)	8	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:260:6:void Screen1View::updateDriveMode(uint8_t)	8	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:45:6:void Screen1View::showBrakeAccelposition(uint8_t, uint8_t)	16	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:277:6:void Screen1View::updateBatteryState(uint8_t)	16	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:58:6:void Screen1View::updateLightingStatus(Lights_t)	40	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:120:6:void Screen1View::updatePowertrainStatus(uint8_t)	16	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:204:6:void Screen1View::udpateIndicators(uint8_t)	16	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:376:6:virtual void Screen1View::handleTickEvent()	32	static

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextDatabase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="texts.xsd" Version="4.26.0">
+  <Languages>
+    <Language Id="GB" />
+  </Languages>
+  <Texts>
+    <TextGroup Id="Group1" />
+    <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_UO9E" Alignment="Center" TypographyId="Typography2">
+        <Translation Language="GB">RM Power: &lt;value&gt; W</Translation>
+      </Text>
+      <Text Id="__SingleUse_M2I0" Alignment="Left" TypographyId="Typography2">
+        <Translation Language="GB">Lat. Accel: &lt;value&gt; m/s²&#10;Long. Accel: &lt;value&gt; m/s²</Translation>
+      </Text>
+      <Text Id="__SingleUse_T4E1" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_Y506" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt; KPH</Translation>
+      </Text>
+      <Text Id="__SingleUse_SSTA" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Air Tank Pres.: &lt;value&gt; bar</Translation>
+      </Text>
+      <Text Id="__SingleUse_MY9U" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Act. LV: &lt;value&gt; V</Translation>
+      </Text>
+      <Text Id="__SingleUse_IDA3" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Act. HV: &lt;value&gt; V</Translation>
+      </Text>
+      <Text Id="__SingleUse_DHY6" Alignment="Center" TypographyId="Typography2">
+        <Translation Language="GB">&lt;value&gt;%</Translation>
+      </Text>
+      <Text Id="__SingleUse_AP7Y" Alignment="Center" TypographyId="Typography2">
+        <Translation Language="GB">&lt;value&gt;°</Translation>
+      </Text>
+      <Text Id="__SingleUse_4QFN" Alignment="Center" TypographyId="Typography2">
+        <Translation Language="GB">&lt;value&gt;°</Translation>
+      </Text>
+      <Text Id="__SingleUse_DAUS" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Opt. Act.: &lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_QTOW" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Eff. Act.: &lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_YEK9" Alignment="Center" TypographyId="Typography2">
+        <Translation Language="GB">&lt;value&gt;°</Translation>
+      </Text>
+      <Text Id="__SingleUse_OKGD" Alignment="Center" TypographyId="Typography2">
+        <Translation Language="GB">TORQUE: &lt;value&gt; Nm</Translation>
+      </Text>
+      <Text Id="__SingleUse_ATAE" Alignment="Center" TypographyId="Typography2">
+        <Translation Language="GB">TORQUE: &lt;value&gt; Nm</Translation>
+      </Text>
+      <Text Id="__SingleUse_X3OX" Alignment="Center" TypographyId="Typography2">
+        <Translation Language="GB">TORQUE: &lt;value&gt; Nm&#10;POWER: &lt;value&gt; W</Translation>
+      </Text>
+      <Text Id="power" Alignment="Left" TypographyId="Small">
+        <Translation Language="GB">New Text</Translation>
+      </Text>
+      <Text Id="torque" Alignment="Left" TypographyId="Small">
+        <Translation Language="GB">New Text</Translation>
+      </Text>
+      <Text Id="__SingleUse_2X0U" Alignment="Center" TypographyId="Typography2">
+        <Translation Language="GB">TORQUE: &lt;value&gt; Nm&#10;POWER: &lt;value&gt; W</Translation>
+      </Text>
+      <Text Id="driveSelector" Alignment="Center" TypographyId="Typography1">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_7ULC" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">ODO: &lt;value&gt; KM</Translation>
+      </Text>
+      <Text Id="__SingleUse_RXWM" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">RANGE: &lt;value&gt; KM</Translation>
+      </Text>
+      <Text Id="__SingleUse_2C4U" Alignment="Center" TypographyId="Typography1_1">
+        <Translation Language="GB">MODE: &lt;value&gt;</Translation>
+      </Text>
+    </TextGroup>
+  </Texts>
+  <Typographies>
+    <Typography Id="Default" Font="verdana.ttf" Size="26" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="0123456789" WildcardCharacterRanges="0-9" />
+    <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="0123456789" WildcardCharacterRanges="0-9" />
+    <Typography Id="Small" Font="verdana.ttf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Typography1" Font="verdana.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ABCDEFGHIJKLMNOPQRSTUVWXYZ" WildcardCharacterRanges="A-Z" />
+    <Typography Id="Typography1_1" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ABCDEFGHIJKLMNOPQRSTUVWXYZ" WildcardCharacterRanges="A-Z" />
+    <Typography Id="Typography2" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="0123456789.-" WildcardCharacterRanges="0-9" />
+  </Typographies>
+</TextDatabase>

@@ -1,0 +1,2 @@
+CM7/TouchGFX/gui/src/model/Model.cpp:5:1:Model::Model()	0	static
+CM7/TouchGFX/gui/src/model/Model.cpp:10:6:void Model::tick()	296	static
