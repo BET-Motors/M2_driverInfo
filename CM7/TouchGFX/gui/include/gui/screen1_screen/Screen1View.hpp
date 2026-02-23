@@ -32,6 +32,8 @@ public:
     void updateFlTorqueAndPower(uint32_t flTrqAct, uint32_t flPwrAct);
     void updateFrTorqueAndPower(uint32_t frTrqAct, uint32_t frPwrAct);
     void updateRlRrTorqueAndPower(uint32_t RlTrqAct, uint32_t RrTrqAct, uint32_t RmPower);
+    void setSteeringAngle(uint32_t rackAngle);
+    void updateSpeedometer(float speed);
 protected:
     long tickCounter = 0;       // To drive time-based animations
     float currentSpeed = 0.0f;  // Float for smooth acceleration

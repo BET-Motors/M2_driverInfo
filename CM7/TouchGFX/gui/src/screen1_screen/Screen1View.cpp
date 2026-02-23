@@ -91,6 +91,11 @@ void Screen1View::updateLvHvVoltage(uint16_t lvValue, uint16_t hvValue) {
 	lv.invalidate();
 }
 
+void Screen1View::setSteeringAngle(uint32_t rackAngle) {
+	Unicode::snprintf(steeringAngle_randomBuffer, STEERINGANGLE_RANDOM_SIZE, "%d", rackAngle);
+	steeringAngle_random.invalidate();
+}
+
 void Screen1View::showGearSelect(uint8_t prndState)
 {
 	char gearString = '-'; // Default if signal is invalid
@@ -278,6 +283,12 @@ void Screen1View::updateBatteryState(uint8_t charge) {
 	batteryState.setValue(charge); // assuming the charge is in %
 	Unicode::snprintf(socBuffer, SOC_SIZE, "%d", charge);
 	soc.invalidate();
+}
+
+void Screen1View::updateSpeedometer(float speed) {
+	speedo.setValue((int)speed);
+    Unicode::snprintfFloat(linearSpeedBuffer, LINEARSPEED_SIZE, "%0.1f", speed);
+	linearSpeed.invalidate();
 }
 
 void Screen1View::tearDownScreen()

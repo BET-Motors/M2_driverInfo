@@ -295,27 +295,6 @@ void HAL_FDCAN_MspDeInit(FDCAN_HandleTypeDef* fdcanHandle)
   }
 }
 
-/* USER CODE BEGIN 1 */
-
-uint64_t UnpackSignal_(const uint8_t* data, uint8_t startBit, uint8_t length) {
-    uint64_t raw64;
-
-    // 1. Use memcpy to prevent alignment crashes on ARM/STM32
-    memcpy(&raw64, data, sizeof(uint64_t));
-
-    // 2. Shift (Intel LE standard)
-    raw64 >>= startBit;
-
-    // 3. Handle 64-bit length safely (avoiding 1ULL << 64)
-    if (length >= 64) {
-        return raw64;
-    }
-
-    // 4. Mask
-    uint64_t mask = (1ULL << length) - 1;
-    return raw64 & mask;
-}
-
 // Use this for your 8-byte messages
 uint64_t UnpackSignal(const uint8_t* data, uint8_t start, uint8_t len) {
     uint64_t val = 0;
@@ -332,7 +311,6 @@ void CAN_Dispatcher(uint32_t canId, uint8_t* data) {
     uint64_t rawVal;
 
     switch (canId) {
-        
         case 0x10000004:
             // HV_Voltage (Start: 0, Len: 16)
             rawVal = UnpackSignal(data, 0, 16);
@@ -549,16 +527,7 @@ void CAN_Dispatcher(uint32_t canId, uint8_t* data) {
             state.gbpb.GearShift_FR_Act_Pos = (uint32_t)rawVal;
 
             break;
-        case 0x10000043:
-            // Odometer (Start: 0, Len: 32)
-            rawVal = UnpackSignal(data, 0, 32);
-            state.vs1.Odometer = (uint32_t)rawVal;
-
-            // Speed (Start: 32, Len: 12)
-            rawVal = UnpackSignal(data, 32, 12);
-            state.vs1.Speed = (float)rawVal * 0.1f;
-
-            break;
+       
         default:
             break;
     }
@@ -591,27 +560,6 @@ void CanRecv(void *args)
 		    osDelay(1);   // give time back deterministically
 		}
 	}
-}
-
-void CAN_GetDriverInputAndVehicleControl(DriverInputAndVehicleControl_t* out) {
-    uint32_t primask = __get_PRIMASK();
-    __disable_irq();
-    *out = state.divc;
-    __set_PRIMASK(primask);
-}
-
-void CAN_GetDriverInputAndVehicleControl2(DriverInputAndVehicleControl2_t* out) {
-    uint32_t primask = __get_PRIMASK();
-    __disable_irq();
-    *out = state.divc2;
-    __set_PRIMASK(primask);
-}
-
-void CAN_GetPowertrainStatusAndReadiness(PowertrainStatusAndReadiness_t* out) {
-    uint32_t primask = __get_PRIMASK();
-    __disable_irq();
-    *out = state.ptsr;
-    __set_PRIMASK(primask);
 }
 
 void CAN_GetElectricalSystemPowerAndEnergy(ElectricalSystemPowerAndEnergy_t* out) {
@@ -695,13 +643,6 @@ void CAN_GetGearboxAndParkbrake(GearBoxAndParkBrake_t* out) {
     uint32_t primask = __get_PRIMASK();
     __disable_irq();
     *out = state.gbpb;
-    __set_PRIMASK(primask);
-}
-
-void CAN_GetVehicleState1(VehicleState1_t* out) {
-    uint32_t primask = __get_PRIMASK();
-    __disable_irq();
-    *out = state.vs1;
     __set_PRIMASK(primask);
 }
 /* USER CODE END 1 */

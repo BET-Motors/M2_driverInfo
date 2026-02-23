@@ -27,9 +27,6 @@ void Model::tick()
     VehicleState1_t vs1;
 
     // 2. Fetch the latest data (Thread-Safe)
-    CAN_GetDriverInputAndVehicleControl(&divc);
-    CAN_GetDriverInputAndVehicleControl2(&divc2);
-    CAN_GetPowertrainStatusAndReadiness(&ptsr);
     CAN_GetElectricalSystemPowerAndEnergy(&espe);
     CAN_GetElectricalSystemLvandsoc2(&esls2);
     CAN_GetMotorAndTorqueControl1(&mtc1);
@@ -44,8 +41,6 @@ void Model::tick()
     CAN_GetGearboxAndParkbrake(&gbpb);
     CAN_GetVehicleState1(&vs1);
 
-	modelListener->updateSteering(divc2);       // Contains Rack Position
-	modelListener->updatePowertrainStatus(ptsr);
 	modelListener->updateHVSystem(espe);        // HV Volt/Curr/Power
 	modelListener->updateLVSystem(esls2);       // LV Volt/SOC
 
@@ -68,27 +63,29 @@ void Model::tick()
 	modelListener->updateGearbox(gbpb);
 	modelListener->updateVehicleState(vs1);     // Odometer & Speed
 
-    int numMessage = osMessageQueueGetCount(guiMQHandle);
     CAN_Raw_Msg_t rawMsg;
 
-    while(numMessage >= 0) {
-        if(osMessageQueueGet(guiMQHandle, &rawMsg, 0, 0) == osOK) {
-            switch(rawMsg.id) {
-                case 0x10000001:
-                    divc = parseDriverInput1(rawMsg);
-                    modelListener->updateDriverControls(divc);
-                    break;
-                case 0x10000002:
-                    divc2 = parseDriverInput2(rawMsg);
-                    modelListener->updateSteering(divc2);
-                    break;
-                case 0x10000003:
-                    ptsr = parsePtStatus(rawMsg);
-                    modelListener->updatePowertrainStatus(ptsr);
-                    break;
-            }
+    while(osMessageQueueGet(guiMQHandle, &rawMsg, 0, 0) == osOK) {
+        switch(rawMsg.id) {
+            case 0x10000001:
+                divc = parseDriverInput1(rawMsg);
+                modelListener->updateDriverControls(divc);
+                break;
+            case 0x10000002:
+                divc2 = parseDriverInput2(rawMsg);
+                modelListener->updateSteering(divc2);
+                break;
+            case 0x10000003:
+                ptsr = parsePtStatus(rawMsg);
+                modelListener->updatePowertrainStatus(ptsr);
+                break;
+
+            case 0x10000043:
+                // Odometer (Start: 0, Len: 32)
+                vs1 = parseVehicleState(rawMsg);
+                modelListener->updateVehicleState(vs1);
+                break;
         }
-        numMessage--;
     }
 }
 
@@ -157,11 +154,25 @@ DriverInputAndVehicleControl2_t Model::parseDriverInput2(CAN_Raw_Msg_t rawMsg) {
     DriverInputAndVehicleControl2_t _divc2;
 
     // Sbw_Rack_Pos_Req (Start: 0, Len: 32)
-    rawVal = UnpackSignal(data, 0, 32);
+    rawVal = UnpackSignal(rawMsg.data, 0, 32);
     _divc2.Sbw_Rack_Pos_Req = ((float)rawVal * 0.01f) - 500.00f;
 
     // Sbw_Rack_Pos_Act (Start: 32, Len: 32)
-    rawVal = UnpackSignal(data, 32, 32);
+    rawVal = UnpackSignal(rawMsg.data, 32, 32);
     _divc2.Sbw_Rack_Pos_Act = ((float)rawVal * 0.01f) - 500.00f;
     return _divc2;
+}
+
+VehicleState1_t Model::parseVehicleState(CAN_Raw_Msg_t rawMsg) {
+    uint64_t rawVal;
+    VehicleState1_t _vs1;
+
+    rawVal = UnpackSignal(rawMsg.data, 0, 32);
+    _vs1.Odometer = (uint32_t)rawVal;
+
+    // Speed (Start: 32, Len: 12)
+    rawVal = UnpackSignal(rawMsg.data, 32, 12);
+    _vs1.Speed = (float)rawVal * 0.1f;
+
+    return _vs1;
 }

@@ -6,6 +6,9 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_XU2G" Alignment="Center" TypographyId="Large">
+        <Translation Language="GB">Random CAN DATA: &lt;value&gt;</Translation>
+      </Text>
       <Text Id="__SingleUse_UO9E" Alignment="Center" TypographyId="Typography2">
         <Translation Language="GB">RM Power: &lt;value&gt; W</Translation>
       </Text>
@@ -30,17 +33,17 @@
       <Text Id="__SingleUse_DHY6" Alignment="Center" TypographyId="Typography2">
         <Translation Language="GB">&lt;value&gt;%</Translation>
       </Text>
-      <Text Id="__SingleUse_AP7Y" Alignment="Center" TypographyId="Typography2">
-        <Translation Language="GB">&lt;value&gt;°</Translation>
-      </Text>
-      <Text Id="__SingleUse_4QFN" Alignment="Center" TypographyId="Typography2">
-        <Translation Language="GB">&lt;value&gt;°</Translation>
-      </Text>
       <Text Id="__SingleUse_DAUS" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Opt. Act.: &lt;value&gt;</Translation>
       </Text>
       <Text Id="__SingleUse_QTOW" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Eff. Act.: &lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_AP7Y" Alignment="Center" TypographyId="Typography2">
+        <Translation Language="GB">&lt;value&gt;°</Translation>
+      </Text>
+      <Text Id="__SingleUse_4QFN" Alignment="Center" TypographyId="Typography2">
+        <Translation Language="GB">&lt;value&gt;°</Translation>
       </Text>
       <Text Id="__SingleUse_YEK9" Alignment="Center" TypographyId="Typography2">
         <Translation Language="GB">&lt;value&gt;°</Translation>
@@ -54,17 +57,11 @@
       <Text Id="__SingleUse_X3OX" Alignment="Center" TypographyId="Typography2">
         <Translation Language="GB">TORQUE: &lt;value&gt; Nm&#10;POWER: &lt;value&gt; W</Translation>
       </Text>
-      <Text Id="power" Alignment="Left" TypographyId="Small">
-        <Translation Language="GB">New Text</Translation>
-      </Text>
-      <Text Id="torque" Alignment="Left" TypographyId="Small">
-        <Translation Language="GB">New Text</Translation>
-      </Text>
       <Text Id="__SingleUse_2X0U" Alignment="Center" TypographyId="Typography2">
         <Translation Language="GB">TORQUE: &lt;value&gt; Nm&#10;POWER: &lt;value&gt; W</Translation>
       </Text>
-      <Text Id="driveSelector" Alignment="Center" TypographyId="Typography1">
-        <Translation Language="GB">&lt;value&gt;</Translation>
+      <Text Id="__SingleUse_2C4U" Alignment="Center" TypographyId="Typography1_1">
+        <Translation Language="GB">MODE: &lt;value&gt;</Translation>
       </Text>
       <Text Id="__SingleUse_7ULC" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">ODO: &lt;value&gt; KM</Translation>
@@ -72,8 +69,14 @@
       <Text Id="__SingleUse_RXWM" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">RANGE: &lt;value&gt; KM</Translation>
       </Text>
-      <Text Id="__SingleUse_2C4U" Alignment="Center" TypographyId="Typography1_1">
-        <Translation Language="GB">MODE: &lt;value&gt;</Translation>
+      <Text Id="power" Alignment="Left" TypographyId="Small">
+        <Translation Language="GB">New Text</Translation>
+      </Text>
+      <Text Id="torque" Alignment="Left" TypographyId="Small">
+        <Translation Language="GB">New Text</Translation>
+      </Text>
+      <Text Id="driveSelector" Alignment="Center" TypographyId="Typography1">
+        <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
     </TextGroup>
   </Texts>

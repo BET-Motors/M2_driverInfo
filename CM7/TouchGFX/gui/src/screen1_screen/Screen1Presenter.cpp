@@ -29,7 +29,7 @@ void Screen1Presenter::updateDriverControls(DriverInputAndVehicleControl_t data)
 
 void Screen1Presenter::updateSteering(DriverInputAndVehicleControl2_t data)
 {
-    // view.setSteeringAngle(data.Sbw_Rack_Pos_Act);
+    view.setSteeringAngle(data.Sbw_Rack_Pos_Act);
 }
 
 // --- Powertrain Status ---
@@ -114,6 +114,6 @@ void Screen1Presenter::updateGearbox(GearBoxAndParkBrake_t data)
 
 void Screen1Presenter::updateVehicleState(VehicleState1_t data)
 {
-    // view.updateSpeedometer(data.Speed);
+    view.updateSpeedometer(data.Speed);
     // view.updateOdometer(data.Odometer);
 }

@@ -1,6 +1,5 @@
 CM7/TouchGFX/gui/include/gui/screen1_screen/Screen1Presenter.hpp:46:13:Screen1Presenter::~Screen1Presenter()	0	static
 CM7/TouchGFX/gui/src/screen1_screen/Screen1Presenter.cpp:10:6:virtual void Screen1Presenter::activate()	0	static
-CM7/TouchGFX/gui/src/screen1_screen/Screen1Presenter.cpp:30:6:virtual void Screen1Presenter::updateSteering(DriverInputAndVehicleControl2_t)	8	static
 CM7/TouchGFX/gui/src/screen1_screen/Screen1Presenter.cpp:60:6:virtual void Screen1Presenter::updateMotorTorque1(MotorAndTorqueControl1_t)	8	static
 CM7/TouchGFX/gui/src/screen1_screen/Screen1Presenter.cpp:64:6:virtual void Screen1Presenter::updateMotorTorque2(MotorAndTorqueControl2_t)	8	static
 CM7/TouchGFX/gui/src/screen1_screen/Screen1Presenter.cpp:69:6:virtual void Screen1Presenter::updateMotorTorque3(MotorAndTorqueControl3_t)	8	static
@@ -11,14 +10,14 @@ CM7/TouchGFX/gui/src/screen1_screen/Screen1Presenter.cpp:93:6:virtual void Scree
 CM7/TouchGFX/gui/src/screen1_screen/Screen1Presenter.cpp:98:6:virtual void Screen1Presenter::updateWarnings(Warnings_t)	0	static
 CM7/TouchGFX/gui/src/screen1_screen/Screen1Presenter.cpp:105:6:virtual void Screen1Presenter::updatePowertrain(Powertrain_t)	16	static
 CM7/TouchGFX/gui/src/screen1_screen/Screen1Presenter.cpp:110:6:virtual void Screen1Presenter::updateGearbox(GearBoxAndParkBrake_t)	16	static
-CM7/TouchGFX/gui/src/screen1_screen/Screen1Presenter.cpp:115:6:virtual void Screen1Presenter::updateVehicleState(VehicleState1_t)	8	static
 CM7/TouchGFX/gui/include/gui/screen1_screen/Screen1Presenter.hpp:46:13:virtual Screen1Presenter::~Screen1Presenter()	8	static
 CM7/TouchGFX/gui/src/screen1_screen/Screen1Presenter.cpp:22:6:virtual void Screen1Presenter::updateDriverControls(DriverInputAndVehicleControl_t)	8	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1Presenter.cpp:30:6:virtual void Screen1Presenter::updateSteering(DriverInputAndVehicleControl2_t)	8	static
 CM7/TouchGFX/gui/src/screen1_screen/Screen1Presenter.cpp:37:6:virtual void Screen1Presenter::updatePowertrainStatus(PowertrainStatusAndReadiness_t)	8	static
 CM7/TouchGFX/gui/src/screen1_screen/Screen1Presenter.cpp:47:6:virtual void Screen1Presenter::updateHVSystem(ElectricalSystemPowerAndEnergy_t)	16	static
 CM7/TouchGFX/gui/src/screen1_screen/Screen1Presenter.cpp:52:6:virtual void Screen1Presenter::updateLVSystem(ElectricalSystemLVAndSOC2_t)	16	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1Presenter.cpp:115:6:virtual void Screen1Presenter::updateVehicleState(VehicleState1_t)	8	static
 CM7/TouchGFX/gui/include/gui/screen1_screen/Screen1Presenter.hpp:46:13:virtual void* Screen1Presenter::_ZThn4_N16Screen1PresenterD1Ev()	0	static
-CM7/TouchGFX/gui/include/gui/screen1_screen/Screen1Presenter.hpp:30:15:virtual void Screen1Presenter::_ZThn4_N16Screen1Presenter14updateSteeringE31DriverInputAndVehicleControl2_t(DriverInputAndVehicleControl2_t)	8	static
 CM7/TouchGFX/gui/include/gui/screen1_screen/Screen1Presenter.hpp:34:15:virtual void Screen1Presenter::_ZThn4_N16Screen1Presenter18updateMotorTorque1E24MotorAndTorqueControl1_t(MotorAndTorqueControl1_t)	8	static
 CM7/TouchGFX/gui/include/gui/screen1_screen/Screen1Presenter.hpp:35:15:virtual void Screen1Presenter::_ZThn4_N16Screen1Presenter18updateMotorTorque2E24MotorAndTorqueControl2_t(MotorAndTorqueControl2_t)	8	static
 CM7/TouchGFX/gui/include/gui/screen1_screen/Screen1Presenter.hpp:36:15:virtual void Screen1Presenter::_ZThn4_N16Screen1Presenter18updateMotorTorque3E24MotorAndTorqueControl3_t(MotorAndTorqueControl3_t)	8	static
@@ -29,5 +28,4 @@ CM7/TouchGFX/gui/include/gui/screen1_screen/Screen1Presenter.hpp:40:15:virtual v
 CM7/TouchGFX/gui/include/gui/screen1_screen/Screen1Presenter.hpp:41:15:virtual void Screen1Presenter::_ZThn4_N16Screen1Presenter14updateWarningsE10Warnings_t(Warnings_t)	0	static
 CM7/TouchGFX/gui/include/gui/screen1_screen/Screen1Presenter.hpp:42:15:virtual void Screen1Presenter::_ZThn4_N16Screen1Presenter16updatePowertrainE12Powertrain_t(Powertrain_t)	16	static
 CM7/TouchGFX/gui/include/gui/screen1_screen/Screen1Presenter.hpp:43:15:virtual void Screen1Presenter::_ZThn4_N16Screen1Presenter13updateGearboxE21GearBoxAndParkBrake_t(GearBoxAndParkBrake_t)	16	static
-CM7/TouchGFX/gui/include/gui/screen1_screen/Screen1Presenter.hpp:44:15:virtual void Screen1Presenter::_ZThn4_N16Screen1Presenter18updateVehicleStateE15VehicleState1_t(VehicleState1_t)	8	static
 CM7/TouchGFX/gui/src/screen1_screen/Screen1Presenter.cpp:4:1:Screen1Presenter::Screen1Presenter(Screen1View&)	0	static

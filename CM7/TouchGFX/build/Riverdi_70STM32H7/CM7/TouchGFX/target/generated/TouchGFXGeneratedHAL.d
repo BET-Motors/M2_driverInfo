@@ -131,10 +131,13 @@ CM7/TouchGFX/build/Riverdi_70STM32H7/CM7/TouchGFX/target/generated/TouchGFXGener
  CM7/TouchGFX/gui/include/gui/screen1_screen/Screen1Presenter.hpp \
  CM7/TouchGFX/gui/include/gui/model/ModelListener.hpp \
  CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp \
+ CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/containers/SwipeContainer.hpp \
+ CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/containers/ListLayout.hpp \
+ CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Image.hpp \
+ CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TiledImage.hpp \
  CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Gauge.hpp \
  CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/containers/progress_indicators/AbstractProgressIndicator.hpp \
  CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/EasingEquations.hpp \
- CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Image.hpp \
  CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextureMapper.hpp \
  CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/Circle.hpp \
  CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/CWRUtil.hpp \
@@ -298,10 +301,13 @@ CM7/Middlewares/ST/touchgfx/framework/include/mvp/View.hpp:
 CM7/TouchGFX/gui/include/gui/screen1_screen/Screen1Presenter.hpp:
 CM7/TouchGFX/gui/include/gui/model/ModelListener.hpp:
 CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp:
+CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/containers/SwipeContainer.hpp:
+CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/containers/ListLayout.hpp:
+CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Image.hpp:
+CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TiledImage.hpp:
 CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Gauge.hpp:
 CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/containers/progress_indicators/AbstractProgressIndicator.hpp:
 CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/EasingEquations.hpp:
-CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Image.hpp:
 CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextureMapper.hpp:
 CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/Circle.hpp:
 CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/CWRUtil.hpp:

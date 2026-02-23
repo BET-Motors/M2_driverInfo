@@ -1,4 +1,6 @@
 CM7/TouchGFX/gui/src/model/Model.cpp:4:1:Model::Model()	0	static
-CM7/TouchGFX/gui/src/model/Model.cpp:91:32:DriverInputAndVehicleControl_t Model::parseDriverInput(CAN_Raw_Msg_t)	16	static
-CM7/TouchGFX/gui/src/model/Model.cpp:120:32:PowertrainStatusAndReadiness_t Model::parsePtStatus(CAN_Raw_Msg_t)	8	static
-CM7/TouchGFX/gui/src/model/Model.cpp:9:6:void Model::tick()	352	static
+CM7/TouchGFX/gui/src/model/Model.cpp:92:32:DriverInputAndVehicleControl_t Model::parseDriverInput1(CAN_Raw_Msg_t)	16	static
+CM7/TouchGFX/gui/src/model/Model.cpp:121:32:PowertrainStatusAndReadiness_t Model::parsePtStatus(CAN_Raw_Msg_t)	8	static
+CM7/TouchGFX/gui/src/model/Model.cpp:151:33:DriverInputAndVehicleControl2_t Model::parseDriverInput2(CAN_Raw_Msg_t)	16	static
+CM7/TouchGFX/gui/src/model/Model.cpp:166:17:VehicleState1_t Model::parseVehicleState(CAN_Raw_Msg_t)	8	static
+CM7/TouchGFX/gui/src/model/Model.cpp:9:6:void Model::tick()	312	static
