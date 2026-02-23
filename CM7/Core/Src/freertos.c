@@ -84,12 +84,17 @@ const osThreadAttr_t VideoTask_attributes = {
   .stack_size = 4096 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
-
-osThreadId_t CanRxTask;
-const osThreadAttr_t CanRxTask_attr = {
-  .name = "CaRxTask",
+/* Definitions for CanRxTask */
+osThreadId_t CanRxTaskHandle;
+const osThreadAttr_t CanRxTask_attributes = {
+  .name = "CanRxTask",
   .stack_size = 1024 * 4,
-  .priority = (osPriority_t) osPriorityAboveNormal,
+  .priority = (osPriority_t) osPriorityNormal2,
+};
+/* Definitions for guiMQ */
+osMessageQueueId_t guiMQHandle;
+const osMessageQueueAttr_t guiMQ_attributes = {
+  .name = "guiMQ"
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -105,6 +110,7 @@ static osThreadAttr_t fatfs_attr = {
 void StartDefaultTask(void *argument);
 extern void TouchGFX_Task(void *argument);
 extern void videoTaskFunc(void *argument);
+extern void CanRecv(void *argument);
 
 extern void MX_USB_HOST_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
@@ -159,6 +165,10 @@ void MX_FREERTOS_Init(void) {
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
 
+  /* Create the queue(s) */
+  /* creation of guiMQ */
+  guiMQHandle = osMessageQueueNew (32, 12, &guiMQ_attributes);
+
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
@@ -172,7 +182,9 @@ void MX_FREERTOS_Init(void) {
 
   /* creation of VideoTask */
   VideoTaskHandle = osThreadNew(videoTaskFunc, NULL, &VideoTask_attributes);
-  CanRxTask = osThreadNew(CanRecv, NULL, &CanRxTask_attr);
+
+  /* creation of CanRxTask */
+  CanRxTaskHandle = osThreadNew(CanRecv, NULL, &CanRxTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
    //fatfs_attr.name = "FATFS";

@@ -43,12 +43,8 @@ CM7/TouchGFX/build/Riverdi_70STM32H7/CM7/TouchGFX/gui/src/screen1_screen/Screen1
  CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/hal/FrameBufferListener.hpp \
  CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Gestures.hpp \
  CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/transitions/Transition.hpp \
- CM7/TouchGFX/gui/include/gui/model/Model.hpp \
- CM7/Middlewares/ST/touchgfx/framework/include/mvp/View.hpp \
- CM7/TouchGFX/gui/include/gui/screen1_screen/Screen1Presenter.hpp \
- CM7/TouchGFX/gui/include/gui/model/ModelListener.hpp \
- CM7/Core/Inc/fdcan.h CM7/Core/Inc/main.h \
- Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
+ CM7/TouchGFX/gui/include/gui/model/Model.hpp CM7/Core/Inc/fdcan.h \
+ CM7/Core/Inc/main.h Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  CM7/Core/Inc/stm32h7xx_hal_conf.h \
  Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h \
  Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h \
@@ -113,6 +109,20 @@ CM7/TouchGFX/build/Riverdi_70STM32H7/CM7/TouchGFX/gui/src/screen1_screen/Screen1
  Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_hcd.h \
  Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_usb.h \
  CM7/Core/Inc/betDbc.h \
+ Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h \
+ Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
+ CM7/Core/Inc/FreeRTOSConfig.h \
+ Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \
+ Middlewares/Third_Party/FreeRTOS/Source/include/portable.h \
+ Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h \
+ gcc/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h \
+ Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h \
+ Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
+ Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
+ Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
+ CM7/Middlewares/ST/touchgfx/framework/include/mvp/View.hpp \
+ CM7/TouchGFX/gui/include/gui/screen1_screen/Screen1Presenter.hpp \
+ CM7/TouchGFX/gui/include/gui/model/ModelListener.hpp \
  CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp \
  CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Gauge.hpp \
  CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/containers/progress_indicators/AbstractProgressIndicator.hpp \
@@ -183,9 +193,6 @@ CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/hal/FrameBufferListener.h
 CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Gestures.hpp:
 CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/transitions/Transition.hpp:
 CM7/TouchGFX/gui/include/gui/model/Model.hpp:
-CM7/Middlewares/ST/touchgfx/framework/include/mvp/View.hpp:
-CM7/TouchGFX/gui/include/gui/screen1_screen/Screen1Presenter.hpp:
-CM7/TouchGFX/gui/include/gui/model/ModelListener.hpp:
 CM7/Core/Inc/fdcan.h:
 CM7/Core/Inc/main.h:
 Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
@@ -255,6 +262,20 @@ Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h:
 Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_hcd.h:
 Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_usb.h:
 CM7/Core/Inc/betDbc.h:
+Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h:
+Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
+CM7/Core/Inc/FreeRTOSConfig.h:
+Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
+Middlewares/Third_Party/FreeRTOS/Source/include/portable.h:
+Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h:
+gcc/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h:
+Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h:
+Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
+Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
+Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h:
+CM7/Middlewares/ST/touchgfx/framework/include/mvp/View.hpp:
+CM7/TouchGFX/gui/include/gui/screen1_screen/Screen1Presenter.hpp:
+CM7/TouchGFX/gui/include/gui/model/ModelListener.hpp:
 CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp:
 CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Gauge.hpp:
 CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/containers/progress_indicators/AbstractProgressIndicator.hpp:

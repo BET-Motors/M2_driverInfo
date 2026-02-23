@@ -1,6 +1,5 @@
 #include <gui/model/Model.hpp>
 #include <gui/model/ModelListener.hpp>
-#include "fdcan.h"
 
 Model::Model() : modelListener(0)
 {
@@ -45,7 +44,6 @@ void Model::tick()
     CAN_GetGearboxAndParkbrake(&gbpb);
     CAN_GetVehicleState1(&vs1);
 
-	modelListener->updateDriverControls(divc);
 	modelListener->updateSteering(divc2);       // Contains Rack Position
 	modelListener->updatePowertrainStatus(ptsr);
 	modelListener->updateHVSystem(espe);        // HV Volt/Curr/Power
@@ -69,4 +67,101 @@ void Model::tick()
 	modelListener->updatePowertrain(pt);
 	modelListener->updateGearbox(gbpb);
 	modelListener->updateVehicleState(vs1);     // Odometer & Speed
+
+    int numMessage = osMessageQueueGetCount(guiMQHandle);
+    CAN_Raw_Msg_t rawMsg;
+
+    while(numMessage >= 0) {
+        if(osMessageQueueGet(guiMQHandle, &rawMsg, 0, 0) == osOK) {
+            switch(rawMsg.id) {
+                case 0x10000001:
+                    divc = parseDriverInput1(rawMsg);
+                    modelListener->updateDriverControls(divc);
+                    break;
+                case 0x10000002:
+                    divc2 = parseDriverInput2(rawMsg);
+                    modelListener->updateSteering(divc2);
+                    break;
+                case 0x10000003:
+                    ptsr = parsePtStatus(rawMsg);
+                    modelListener->updatePowertrainStatus(ptsr);
+                    break;
+            }
+        }
+        numMessage--;
+    }
+}
+
+DriverInputAndVehicleControl_t Model::parseDriverInput1(CAN_Raw_Msg_t rawMsg) {
+    uint64_t rawVal;
+
+    DriverInputAndVehicleControl_t _divc;
+    // Acc_Ped_Pos (Start: 0, Len: 8)
+    rawVal = UnpackSignal(rawMsg.data, 0, 8);
+    _divc.Acc_Ped_Pos = (uint32_t)rawVal;
+
+    // Brk_Ped_Pos (Start: 8, Len: 8)
+    rawVal = UnpackSignal(rawMsg.data, 8, 8);
+    _divc.Brk_Ped_Pos = (uint32_t)rawVal;
+
+    // PRND_State (Start: 16, Len: 3)
+    rawVal = UnpackSignal(rawMsg.data, 16, 3);
+    _divc.PRND_State = (uint32_t)rawVal;
+
+    // Drv_Program (Start: 22, Len: 3)
+    rawVal = UnpackSignal(rawMsg.data, 22, 3);
+    _divc.Drv_Program = (uint32_t)rawVal;
+
+    rawVal = UnpackSignal(rawMsg.data, 32, 16);
+    _divc.StWhl_Angl_Act = ((float)rawVal * 0.1f) - 900.00f;
+
+    rawVal = UnpackSignal(rawMsg.data, 48, 16);
+    _divc.Whl_Angl_Act = ((float)rawVal * 0.1f) - 900.00f;
+
+    return _divc;
+}
+
+PowertrainStatusAndReadiness_t Model::parsePtStatus(CAN_Raw_Msg_t rawMsg) {
+    uint64_t rawVal;
+    PowertrainStatusAndReadiness_t _ptsr;
+    // PT_Ready (Start: 0, Len: 1)
+    rawVal = UnpackSignal(rawMsg.data, 0, 1);
+    _ptsr.PT_Ready = (uint32_t)rawVal;
+
+    // DrvTrain_Status (Start: 1, Len: 3)
+    rawVal = UnpackSignal(rawMsg.data, 1, 3);
+    _ptsr.DrvTrain_Status = (uint32_t)rawVal;
+
+    // MIL_Lamp_Status (Start: 4, Len: 1)
+    rawVal = UnpackSignal(rawMsg.data, 4, 1);
+    _ptsr.MIL_Lamp_Status = (uint32_t)rawVal;
+
+    // Turn_Indicator_State (Start: 5, Len: 3)
+    rawVal = UnpackSignal(rawMsg.data, 5, 3);
+    _ptsr.Turn_Indicator_State = (uint32_t)rawVal;
+
+    // HVDisconnect_Press (Start: 10, Len: 1)
+    rawVal = UnpackSignal(rawMsg.data, 10, 1);
+    _ptsr.HVDisconnect_Press = (uint32_t)rawVal;
+
+    // Emergency_Press (Start: 12, Len: 1)
+    rawVal = UnpackSignal(rawMsg.data, 12, 1);
+    _ptsr.Emergency_Press = (uint32_t)rawVal;
+
+    return _ptsr;
+}
+
+DriverInputAndVehicleControl2_t Model::parseDriverInput2(CAN_Raw_Msg_t rawMsg) {
+    uint64_t rawVal;
+
+    DriverInputAndVehicleControl2_t _divc2;
+
+    // Sbw_Rack_Pos_Req (Start: 0, Len: 32)
+    rawVal = UnpackSignal(data, 0, 32);
+    _divc2.Sbw_Rack_Pos_Req = ((float)rawVal * 0.01f) - 500.00f;
+
+    // Sbw_Rack_Pos_Act (Start: 32, Len: 32)
+    rawVal = UnpackSignal(data, 32, 32);
+    _divc2.Sbw_Rack_Pos_Act = ((float)rawVal * 0.01f) - 500.00f;
+    return _divc2;
 }

@@ -19,33 +19,30 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "fdcan.h"
-#include "cmsis_os2.h"
+
 /* USER CODE BEGIN 0 */
 
 /* USER CODE END 0 */
 
 FDCAN_HandleTypeDef hfdcan1;
 FDCAN_HandleTypeDef hfdcan2;
-
-static CAN_Internal_State_t state;
+CAN_Internal_State_t state;
 
 /* FDCAN1 init function */
 void MX_FDCAN1_Init(void)
 {
+
   /* USER CODE BEGIN FDCAN1_Init 0 */
   /* USER CODE END FDCAN1_Init 0 */
 
   /* USER CODE BEGIN FDCAN1_Init 1 */
   /* USER CODE END FDCAN1_Init 1 */
-
   hfdcan1.Instance = FDCAN1;
   hfdcan1.Init.FrameFormat = FDCAN_FRAME_FD_NO_BRS;
   hfdcan1.Init.Mode = FDCAN_MODE_NORMAL;
-  hfdcan1.Init.AutoRetransmission = DISABLE; // No TX, so disable retrans
+  hfdcan1.Init.AutoRetransmission = ENABLE;
   hfdcan1.Init.TransmitPause = DISABLE;
   hfdcan1.Init.ProtocolException = DISABLE;
-
-  // Timing parameters (kept as you provided)
   hfdcan1.Init.NominalPrescaler = 1;
   hfdcan1.Init.NominalSyncJumpWidth = 1;
   hfdcan1.Init.NominalTimeSeg1 = 41;
@@ -54,31 +51,24 @@ void MX_FDCAN1_Init(void)
   hfdcan1.Init.DataSyncJumpWidth = 1;
   hfdcan1.Init.DataTimeSeg1 = 1;
   hfdcan1.Init.DataTimeSeg2 = 1;
-
   hfdcan1.Init.MessageRAMOffset = 0;
-
-  // --- RX CONFIGURATION ---
-  hfdcan1.Init.StdFiltersNbr = 0;     // No Standard IDs in your list
-  hfdcan1.Init.ExtFiltersNbr = 1;     // 1 Filter to catch all your J1939 IDs
-  hfdcan1.Init.RxFifo0ElmtsNbr = 32;  // Maximize Buffer (Store 32 msgs)
+  hfdcan1.Init.StdFiltersNbr = 0;
+  hfdcan1.Init.ExtFiltersNbr = 1;
+  hfdcan1.Init.RxFifo0ElmtsNbr = 32;
   hfdcan1.Init.RxFifo0ElmtSize = FDCAN_DATA_BYTES_8;
-  hfdcan1.Init.RxFifo1ElmtsNbr = 0;   // Unused
+  hfdcan1.Init.RxFifo1ElmtsNbr = 0;
   hfdcan1.Init.RxFifo1ElmtSize = FDCAN_DATA_BYTES_8;
-  hfdcan1.Init.RxBuffersNbr = 0;      // Use FIFO, not dedicated buffers
+  hfdcan1.Init.RxBuffersNbr = 0;
   hfdcan1.Init.RxBufferSize = FDCAN_DATA_BYTES_8;
-
-  // --- TX CONFIGURATION (DISABLED) ---
   hfdcan1.Init.TxEventsNbr = 0;
   hfdcan1.Init.TxBuffersNbr = 0;
-  hfdcan1.Init.TxFifoQueueElmtsNbr = 0;
+  hfdcan1.Init.TxFifoQueueElmtsNbr = 32;
   hfdcan1.Init.TxFifoQueueMode = FDCAN_TX_FIFO_OPERATION;
   hfdcan1.Init.TxElmtSize = FDCAN_DATA_BYTES_8;
-
   if (HAL_FDCAN_Init(&hfdcan1) != HAL_OK)
   {
     Error_Handler();
   }
-
   /* USER CODE BEGIN FDCAN1_Init 2 */
 
   // --- FILTER CONFIGURATION ---
@@ -119,8 +109,8 @@ void MX_FDCAN1_Init(void)
   }
 
   /* USER CODE END FDCAN1_Init 2 */
-}
 
+}
 /* FDCAN2 init function */
 void MX_FDCAN2_Init(void)
 {
@@ -307,7 +297,7 @@ void HAL_FDCAN_MspDeInit(FDCAN_HandleTypeDef* fdcanHandle)
 
 /* USER CODE BEGIN 1 */
 
-static uint64_t UnpackSignal(const uint8_t* data, uint8_t startBit, uint8_t length) {
+uint64_t UnpackSignal_(const uint8_t* data, uint8_t startBit, uint8_t length) {
     uint64_t raw64;
 
     // 1. Use memcpy to prevent alignment crashes on ARM/STM32
@@ -326,6 +316,15 @@ static uint64_t UnpackSignal(const uint8_t* data, uint8_t startBit, uint8_t leng
     return raw64 & mask;
 }
 
+// Use this for your 8-byte messages
+uint64_t UnpackSignal(const uint8_t* data, uint8_t start, uint8_t len) {
+    uint64_t val = 0;
+    memcpy(&val, data, 8); // Safe 8-byte copy
+    val >>= start;
+    uint64_t mask = (len >= 64) ? 0xFFFFFFFFFFFFFFFFULL : (1ULL << len) - 1;
+    return val & mask;
+}
+
 // -----------------------------------------------------------
 // Main Rx Task
 // -----------------------------------------------------------
@@ -333,65 +332,7 @@ void CAN_Dispatcher(uint32_t canId, uint8_t* data) {
     uint64_t rawVal;
 
     switch (canId) {
-        case 0x10000001:
-            // Acc_Ped_Pos (Start: 0, Len: 8)
-            rawVal = UnpackSignal(data, 0, 8);
-            state.divc.Acc_Ped_Pos = (uint32_t)rawVal;
-
-            // Brk_Ped_Pos (Start: 8, Len: 8)
-            rawVal = UnpackSignal(data, 8, 8);
-            state.divc.Brk_Ped_Pos = (uint32_t)rawVal;
-
-            // PRND_State (Start: 16, Len: 3)
-            rawVal = UnpackSignal(data, 16, 3);
-            state.divc.PRND_State = (uint32_t)rawVal;
-
-            // Drv_Program (Start: 22, Len: 3)
-            rawVal = UnpackSignal(data, 22, 3);
-            state.divc.Drv_Program = (uint32_t)rawVal;
-
-            rawVal = UnpackSignal(data, 32, 16);
-            state.divc.StWhl_Angl_Act = ((float)rawVal * 0.1f) - 900.00f;
-
-            rawVal = UnpackSignal(data, 48, 16);
-			state.divc.Whl_Angl_Act = ((float)rawVal * 0.1f) - 900.00f;
-            break;
-        case 0x10000002:
-            // Sbw_Rack_Pos_Req (Start: 0, Len: 32)
-            rawVal = UnpackSignal(data, 0, 32);
-            state.divc2.Sbw_Rack_Pos_Req = ((float)rawVal * 0.01f) - 500.00f;
-
-            // Sbw_Rack_Pos_Act (Start: 32, Len: 32)
-            rawVal = UnpackSignal(data, 32, 32);
-            state.divc2.Sbw_Rack_Pos_Act = ((float)rawVal * 0.01f) - 500.00f;
-
-            break;
-        case 0x10000003:
-            // PT_Ready (Start: 0, Len: 1)
-            rawVal = UnpackSignal(data, 0, 1);
-            state.ptsr.PT_Ready = (uint32_t)rawVal;
-
-            // DrvTrain_Status (Start: 1, Len: 3)
-            rawVal = UnpackSignal(data, 1, 3);
-            state.ptsr.DrvTrain_Status = (uint32_t)rawVal;
-
-            // MIL_Lamp_Status (Start: 4, Len: 1)
-            rawVal = UnpackSignal(data, 4, 1);
-            state.ptsr.MIL_Lamp_Status = (uint32_t)rawVal;
-
-            // Turn_Indicator_State (Start: 5, Len: 3)
-            rawVal = UnpackSignal(data, 5, 3);
-            state.ptsr.Turn_Indicator_State = (uint32_t)rawVal;
-
-            // HVDisconnect_Press (Start: 10, Len: 1)
-            rawVal = UnpackSignal(data, 10, 1);
-            state.ptsr.HVDisconnect_Press = (uint32_t)rawVal;
-
-            // Emergency_Press (Start: 12, Len: 1)
-            rawVal = UnpackSignal(data, 12, 1);
-            state.ptsr.Emergency_Press = (uint32_t)rawVal;
-
-            break;
+        
         case 0x10000004:
             // HV_Voltage (Start: 0, Len: 16)
             rawVal = UnpackSignal(data, 0, 16);
@@ -627,6 +568,7 @@ void CanRecv(void *args)
 {
 	FDCAN_RxHeaderTypeDef header;
 	uint8_t data[64];
+    CAN_Raw_Msg_t rawMsg;
 	const uint32_t taskPeriod = 10;
 	uint32_t tick = osKernelGetTickCount();
 
@@ -637,10 +579,13 @@ void CanRecv(void *args)
 
 		while (HAL_FDCAN_GetRxFifoFillLevel(&hfdcan1, FDCAN_RX_FIFO0) > 0)
 		{
-			if (HAL_FDCAN_GetRxMessage(&hfdcan1, FDCAN_RX_FIFO0, &header, data) != HAL_OK)
+			if (HAL_FDCAN_GetRxMessage(&hfdcan1, FDCAN_RX_FIFO0, &header, rawMsg.data) != HAL_OK)
 				break;
+            
+            rawMsg.id = header.Identifier;
+            osStatus_t status = osMessageQueuePut(guiMQHandle, &rawMsg, 0, 0);
 
-			CAN_Dispatcher(header.Identifier, data);
+			CAN_Dispatcher(header.Identifier, rawMsg.data);
 		}
 		if (HAL_FDCAN_GetRxFifoFillLevel(&hfdcan1, FDCAN_RX_FIFO0) > 0) {
 		    osDelay(1);   // give time back deterministically

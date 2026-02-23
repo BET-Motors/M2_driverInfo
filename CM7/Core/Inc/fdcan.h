@@ -31,11 +31,14 @@ extern "C" {
 
 /* USER CODE BEGIN Includes */
 #include "betDbc.h"
+#include "cmsis_os.h"
 /* USER CODE END Includes */
 
 extern FDCAN_HandleTypeDef hfdcan1;
 
 extern FDCAN_HandleTypeDef hfdcan2;
+
+extern osMessageQueueId_t guiMQHandle;
 
 /* USER CODE BEGIN Private defines */
 
@@ -78,6 +81,15 @@ typedef struct
 
 void CAN_Dispatcher(uint32_t canId, uint8_t* data);
 void CanRecv(void *args);
+
+uint64_t UnpackSignal(const uint8_t* data, uint8_t startBit, uint8_t length);
+
+extern osMessageQueueId_t guiMQHandle;
+
+typedef struct {
+    uint32_t id;       // The CAN Identifier (Standard or Extended)
+    uint8_t  data[8];  // The 8 bytes of payload data
+} CAN_Raw_Msg_t;
 
 // --- Getters ---
 void CAN_GetDriverInputAndVehicleControl(DriverInputAndVehicleControl_t* out);

@@ -69,8 +69,8 @@ typedef struct
     uint32_t Brk_Ped_Pos;
     uint32_t PRND_State;
     uint32_t Drv_Program;
-    uint32_t StWhl_Angl_Act;
-    uint32_t Whl_Angl_Act;
+    float StWhl_Angl_Act;
+    float Whl_Angl_Act;
 } DriverInputAndVehicleControl_t;
 
 // Bucket: Driver Input & Vehicle Control2
