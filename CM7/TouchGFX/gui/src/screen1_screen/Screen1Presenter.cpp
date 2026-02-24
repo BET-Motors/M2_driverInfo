@@ -85,7 +85,7 @@ void Screen1Presenter::updateEfficiency(EfficiencyAndPerformance_t data)
 
 void Screen1Presenter::updateRange(EfficiencyAndPerformance2_t data)
 {
-    // view.updateRangeEstimates(data.Rng_Rem);
+    view.updateRangeRemaining(data.Rng_Rem);
 }
 
 // --- Diagnostics ---

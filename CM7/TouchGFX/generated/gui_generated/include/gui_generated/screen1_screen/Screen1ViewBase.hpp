@@ -8,8 +8,6 @@
 #include <mvp/View.hpp>
 #include <gui/screen1_screen/Screen1Presenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
-#include <touchgfx/containers/SwipeContainer.hpp>
-#include <touchgfx/containers/Container.hpp>
 #include <touchgfx/widgets/Gauge.hpp>
 #include <touchgfx/widgets/canvas/PainterRGB565Bitmap.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
@@ -32,8 +30,6 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
-    touchgfx::SwipeContainer driverInfo;
-    touchgfx::Container driverInfoPage1;
     touchgfx::Gauge speedo;
     touchgfx::PainterRGB565Bitmap speedoPainter;
     touchgfx::Gauge accelPedal;
@@ -78,10 +74,7 @@ protected:
     touchgfx::TextAreaWithTwoWildcards accelChar;
     touchgfx::TextAreaWithOneWildcard rmPower;
     touchgfx::Image powertrainStatus;
-    touchgfx::Container driverInfoPage2;
-    touchgfx::Container driverInfoPage3;
-    touchgfx::Container driverInfoPage4;
-    touchgfx::TextAreaWithOneWildcard steeringAngle_random;
+    touchgfx::Image parkBrake;
 
     /*
      * Wildcard Buffers
@@ -134,8 +127,6 @@ protected:
     touchgfx::Unicode::UnicodeChar accelCharBuffer2[ACCELCHARBUFFER2_SIZE];
     static const uint16_t RMPOWER_SIZE = 8;
     touchgfx::Unicode::UnicodeChar rmPowerBuffer[RMPOWER_SIZE];
-    static const uint16_t STEERINGANGLE_RANDOM_SIZE = 10;
-    touchgfx::Unicode::UnicodeChar steeringAngle_randomBuffer[STEERINGANGLE_RANDOM_SIZE];
 
 private:
 

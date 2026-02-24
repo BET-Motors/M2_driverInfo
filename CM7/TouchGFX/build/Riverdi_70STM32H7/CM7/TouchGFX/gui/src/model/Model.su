@@ -1,6 +1,18 @@
 CM7/TouchGFX/gui/src/model/Model.cpp:4:1:Model::Model()	0	static
-CM7/TouchGFX/gui/src/model/Model.cpp:92:32:DriverInputAndVehicleControl_t Model::parseDriverInput1(CAN_Raw_Msg_t)	16	static
-CM7/TouchGFX/gui/src/model/Model.cpp:121:32:PowertrainStatusAndReadiness_t Model::parsePtStatus(CAN_Raw_Msg_t)	8	static
-CM7/TouchGFX/gui/src/model/Model.cpp:151:33:DriverInputAndVehicleControl2_t Model::parseDriverInput2(CAN_Raw_Msg_t)	16	static
-CM7/TouchGFX/gui/src/model/Model.cpp:166:17:VehicleState1_t Model::parseVehicleState(CAN_Raw_Msg_t)	8	static
-CM7/TouchGFX/gui/src/model/Model.cpp:9:6:void Model::tick()	312	static
+CM7/TouchGFX/gui/src/model/Model.cpp:110:6:bool Model::parseDriverInput1(CAN_Raw_Msg_t, DriverInputAndVehicleControl_t*)	40	static
+CM7/TouchGFX/gui/src/model/Model.cpp:160:6:bool Model::parsePtStatus(CAN_Raw_Msg_t, PowertrainStatusAndReadiness_t*)	32	static
+CM7/TouchGFX/gui/src/model/Model.cpp:208:6:bool Model::parseDriverInput2(CAN_Raw_Msg_t, DriverInputAndVehicleControl2_t*)	40	static
+CM7/TouchGFX/gui/src/model/Model.cpp:231:6:bool Model::parseVehicleState(CAN_Raw_Msg_t, VehicleState1_t*)	32	static
+CM7/TouchGFX/gui/src/model/Model.cpp:253:6:bool Model::parseHVSystem(CAN_Raw_Msg_t, ElectricalSystemPowerAndEnergy_t*)	40	static
+CM7/TouchGFX/gui/src/model/Model.cpp:284:6:bool Model::parseLVSystem(CAN_Raw_Msg_t, ElectricalSystemLVAndSOC2_t*)	32	static
+CM7/TouchGFX/gui/src/model/Model.cpp:307:6:bool Model::parseMtc1(CAN_Raw_Msg_t, MotorAndTorqueControl1_t*)	40	static
+CM7/TouchGFX/gui/src/model/Model.cpp:331:6:bool Model::parseMtc2(CAN_Raw_Msg_t, MotorAndTorqueControl2_t*)	40	static
+CM7/TouchGFX/gui/src/model/Model.cpp:355:6:bool Model::parseMtc3(CAN_Raw_Msg_t, MotorAndTorqueControl3_t*)	40	static
+CM7/TouchGFX/gui/src/model/Model.cpp:379:6:bool Model::parseMtc4(CAN_Raw_Msg_t, MotorAndTorqueControl4_t*)	40	static
+CM7/TouchGFX/gui/src/model/Model.cpp:403:6:bool Model::parseEffPerf(CAN_Raw_Msg_t, EfficiencyAndPerformance_t*)	40	static
+CM7/TouchGFX/gui/src/model/Model.cpp:443:6:bool Model::parseEffPerf2(CAN_Raw_Msg_t, EfficiencyAndPerformance2_t*)	40	static
+CM7/TouchGFX/gui/src/model/Model.cpp:467:6:bool Model::parseFaults(CAN_Raw_Msg_t, Faults_t*)	16	static
+CM7/TouchGFX/gui/src/model/Model.cpp:481:6:bool Model::parseWarnings(CAN_Raw_Msg_t, Warnings_t*)	16	static
+CM7/TouchGFX/gui/src/model/Model.cpp:495:6:bool Model::parsePowertrain(CAN_Raw_Msg_t, Powertrain_t*)	40	static
+CM7/TouchGFX/gui/src/model/Model.cpp:527:6:bool Model::parseGearbox(CAN_Raw_Msg_t, GearBoxAndParkBrake_t*)	32	static
+CM7/TouchGFX/gui/src/model/Model.cpp:9:6:void Model::tick()	224	static

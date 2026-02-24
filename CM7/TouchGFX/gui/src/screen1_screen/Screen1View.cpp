@@ -40,6 +40,7 @@ void Screen1View::setupScreen()
 	canLeftActive = false;
 	canRightActive = false;
 	milActive = false;
+	parkBrake.setVisible(false);
 }
 
 void Screen1View::showBrakeAccelposition(uint8_t brakePosition, uint8_t accelPosition) {
@@ -92,8 +93,8 @@ void Screen1View::updateLvHvVoltage(uint16_t lvValue, uint16_t hvValue) {
 }
 
 void Screen1View::setSteeringAngle(uint32_t rackAngle) {
-	Unicode::snprintf(steeringAngle_randomBuffer, STEERINGANGLE_RANDOM_SIZE, "%d", rackAngle);
-	steeringAngle_random.invalidate();
+	/* Unicode::snprintf(steeringAngle_randomBuffer, STEERINGANGLE_RANDOM_SIZE, "%d", rackAngle);
+	steeringAngle_random.invalidate(); */
 }
 
 void Screen1View::showGearSelect(uint8_t prndState)
@@ -104,22 +105,28 @@ void Screen1View::showGearSelect(uint8_t prndState)
 	{
 	case 0: // CAN says 0 is Neutral
 		gearString = 'N';
+		parkBrake.setVisible(false);
 		break;
 	case 1: // CAN says 1 is Park
 		gearString = 'P';
+		parkBrake.setVisible(true);
 		break;
 	case 2: // CAN says 2 is Drive
 		gearString = 'D';
+		parkBrake.setVisible(false);
 		break;
 	case 3: // CAN says 3 is Reverse
 		gearString = 'R';
+		parkBrake.setVisible(false);
 		break;
 	default:
 		gearString = '-'; // Error or invalid state
+		parkBrake.setVisible(false);
 		break;
 	}
 	Unicode::snprintf(textAreaPrndBuffer, TEXTAREAPRND_SIZE, "%c", gearString);
 	textAreaPrnd.invalidate();
+	parkBrake.invalidate();
 }
 
 void Screen1View::updatePowertrainStatus(uint8_t status) {

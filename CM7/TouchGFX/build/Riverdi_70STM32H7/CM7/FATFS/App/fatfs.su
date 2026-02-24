@@ -1,3 +1,0 @@
-CM7/FATFS/App/fatfs.c:109:6:MX_FATFS_Init	8	static
-CM7/FATFS/App/fatfs.c:125:7:get_fattime	0	static
-CM7/FATFS/App/fatfs.c:133:6:MX_FATFS_Process	200	static

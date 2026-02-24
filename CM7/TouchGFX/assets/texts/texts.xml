@@ -6,9 +6,6 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_XU2G" Alignment="Center" TypographyId="Large">
-        <Translation Language="GB">Random CAN DATA: &lt;value&gt;</Translation>
-      </Text>
       <Text Id="__SingleUse_UO9E" Alignment="Center" TypographyId="Typography2">
         <Translation Language="GB">RM Power: &lt;value&gt; W</Translation>
       </Text>

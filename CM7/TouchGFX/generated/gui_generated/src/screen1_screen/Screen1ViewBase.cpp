@@ -15,14 +15,6 @@ Screen1ViewBase::Screen1ViewBase()
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
-    driverInfo.setXY(0, 0);
-    driverInfo.setPageIndicatorBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_SWIPECONTAINER_MEDIUM_OFF_NORMAL_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_SWIPECONTAINER_MEDIUM_ON_ACTIVE_ID));
-    driverInfo.setPageIndicatorXY(600, 765);
-    driverInfo.setSwipeCutoff(50);
-    driverInfo.setEndSwipeElasticWidth(50);
-
-    driverInfoPage1.setWidth(1280);
-    driverInfoPage1.setHeight(800);
     speedo.setBackground(touchgfx::Bitmap(BITMAP_GUAGE_ID));
     speedo.setPosition(120, 248, 336, 336);
     speedo.setCenter(168, 168);
@@ -40,7 +32,7 @@ Screen1ViewBase::Screen1ViewBase()
     speedo.getArc().setLineWidth(136);
     speedo.getArc().setCapPrecision(180);
     speedo.setArcPosition(0, 0, 336, 336);
-    driverInfoPage1.add(speedo);
+    add(speedo);
 
     accelPedal.setBackground(touchgfx::Bitmap(BITMAP_ACCELPEDAL_BG_ID));
     accelPedal.setPosition(0, 296, 240, 240);
@@ -60,7 +52,7 @@ Screen1ViewBase::Screen1ViewBase()
     accelPedal.getArc().setCapPrecision(180);
     accelPedal.setArcPosition(0, 0, 240, 240);
     accelPedal.putArcOnTop();
-    driverInfoPage1.add(accelPedal);
+    add(accelPedal);
 
     brakePedal.setBackground(touchgfx::Bitmap(BITMAP_BRAKEPEDAL_BG_ID));
     brakePedal.setPosition(336, 296, 240, 240);
@@ -79,7 +71,7 @@ Screen1ViewBase::Screen1ViewBase()
     brakePedal.getArc().setLineWidth(139);
     brakePedal.getArc().setCapPrecision(180);
     brakePedal.setArcPosition(0, 0, 240, 240);
-    driverInfoPage1.add(brakePedal);
+    add(brakePedal);
 
     range.setPosition(10, 8, 259, 30);
     range.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -87,7 +79,7 @@ Screen1ViewBase::Screen1ViewBase()
     rangeBuffer[0] = 0;
     range.setWildcard(rangeBuffer);
     range.setTypedText(touchgfx::TypedText(T___SINGLEUSE_RXWM));
-    driverInfoPage1.add(range);
+    add(range);
 
     odo.setPosition(10, 46, 245, 30);
     odo.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -95,7 +87,7 @@ Screen1ViewBase::Screen1ViewBase()
     odoBuffer[0] = 0;
     odo.setWildcard(odoBuffer);
     odo.setTypedText(touchgfx::TypedText(T___SINGLEUSE_7ULC));
-    driverInfoPage1.add(odo);
+    add(odo);
 
     driveMode.setPosition(212, 589, 153, 24);
     driveMode.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -104,7 +96,7 @@ Screen1ViewBase::Screen1ViewBase()
     driveModeBuffer[0] = 0;
     driveMode.setWildcard(driveModeBuffer);
     driveMode.setTypedText(touchgfx::TypedText(T___SINGLEUSE_2C4U));
-    driverInfoPage1.add(driveMode);
+    add(driveMode);
 
     frontLeftWheel.setXY(651, 74);
     frontLeftWheel.setBitmap(touchgfx::Bitmap(BITMAP_TYRE_ID));
@@ -117,7 +109,7 @@ Screen1ViewBase::Screen1ViewBase()
     frontLeftWheel.setCamera(60.5f, 62.0f);
     frontLeftWheel.setAngles(0.0f, 0.0f, 0.0f);
     frontLeftWheel.setRenderingAlgorithm(touchgfx::TextureMapper::NEAREST_NEIGHBOR);
-    driverInfoPage1.add(frontLeftWheel);
+    add(frontLeftWheel);
 
     frontRightWheel.setXY(957, 74);
     frontRightWheel.setBitmap(touchgfx::Bitmap(BITMAP_TYRE_ID));
@@ -130,7 +122,7 @@ Screen1ViewBase::Screen1ViewBase()
     frontRightWheel.setCamera(68.5f, 62.0f);
     frontRightWheel.setAngles(0.0f, 0.0f, 0.0f);
     frontRightWheel.setRenderingAlgorithm(touchgfx::TextureMapper::NEAREST_NEIGHBOR);
-    driverInfoPage1.add(frontRightWheel);
+    add(frontRightWheel);
 
     batteryState.setBackground(touchgfx::Bitmap(BITMAP_BATTERSOC_BG_ID));
     batteryState.setPosition(997, 337, 184, 184);
@@ -149,7 +141,7 @@ Screen1ViewBase::Screen1ViewBase()
     batteryState.getArc().setLineWidth(78);
     batteryState.getArc().setCapPrecision(180);
     batteryState.setArcPosition(0, 0, 184, 184);
-    driverInfoPage1.add(batteryState);
+    add(batteryState);
 
     steeringWheel.setXY(792, 60);
     steeringWheel.setBitmap(touchgfx::Bitmap(BITMAP_STEERING_ID));
@@ -162,7 +154,7 @@ Screen1ViewBase::Screen1ViewBase()
     steeringWheel.setCamera(76.0f, 76.0f);
     steeringWheel.setAngles(0.0f, 0.0f, 0.0f);
     steeringWheel.setRenderingAlgorithm(touchgfx::TextureMapper::NEAREST_NEIGHBOR);
-    driverInfoPage1.add(steeringWheel);
+    add(steeringWheel);
 
     textAreaPrnd.setPosition(262, 516, 52, 41);
     textAreaPrnd.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -170,15 +162,15 @@ Screen1ViewBase::Screen1ViewBase()
     textAreaPrndBuffer[0] = 0;
     textAreaPrnd.setWildcard(textAreaPrndBuffer);
     textAreaPrnd.setTypedText(touchgfx::TypedText(T_DRIVESELECTOR));
-    driverInfoPage1.add(textAreaPrnd);
+    add(textAreaPrnd);
 
     rearLeftWheel.setXY(666, 587);
     rearLeftWheel.setBitmap(touchgfx::Bitmap(BITMAP_TYRE_ID));
-    driverInfoPage1.add(rearLeftWheel);
+    add(rearLeftWheel);
 
     rearRightWheel.setXY(992, 587);
     rearRightWheel.setBitmap(touchgfx::Bitmap(BITMAP_TYRE_ID));
-    driverInfoPage1.add(rearRightWheel);
+    add(rearRightWheel);
 
     torquePower_FL.setXY(518, 203);
     torquePower_FL.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -189,7 +181,7 @@ Screen1ViewBase::Screen1ViewBase()
     torquePower_FL.setWildcard2(torquePower_FLBuffer2);
     torquePower_FL.resizeToCurrentText();
     torquePower_FL.setTypedText(touchgfx::TypedText(T___SINGLEUSE_2X0U));
-    driverInfoPage1.add(torquePower_FL);
+    add(torquePower_FL);
 
     torquePower_FR.setXY(997, 203);
     torquePower_FR.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -200,7 +192,7 @@ Screen1ViewBase::Screen1ViewBase()
     torquePower_FR.setWildcard2(torquePower_FRBuffer2);
     torquePower_FR.resizeToCurrentText();
     torquePower_FR.setTypedText(touchgfx::TypedText(T___SINGLEUSE_X3OX));
-    driverInfoPage1.add(torquePower_FR);
+    add(torquePower_FR);
 
     torquePower_RR.setXY(909, 723);
     torquePower_RR.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -209,7 +201,7 @@ Screen1ViewBase::Screen1ViewBase()
     torquePower_RR.setWildcard(torquePower_RRBuffer);
     torquePower_RR.resizeToCurrentText();
     torquePower_RR.setTypedText(touchgfx::TypedText(T___SINGLEUSE_ATAE));
-    driverInfoPage1.add(torquePower_RR);
+    add(torquePower_RR);
 
     torquePower_RL.setXY(578, 723);
     torquePower_RL.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -218,7 +210,7 @@ Screen1ViewBase::Screen1ViewBase()
     torquePower_RL.setWildcard(torquePower_RLBuffer);
     torquePower_RL.resizeToCurrentText();
     torquePower_RL.setTypedText(touchgfx::TypedText(T___SINGLEUSE_OKGD));
-    driverInfoPage1.add(torquePower_RL);
+    add(torquePower_RL);
 
     steeringAngle.setPosition(826, 36, 85, 24);
     steeringAngle.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -226,7 +218,7 @@ Screen1ViewBase::Screen1ViewBase()
     steeringAngleBuffer[0] = 0;
     steeringAngle.setWildcard(steeringAngleBuffer);
     steeringAngle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_YEK9));
-    driverInfoPage1.add(steeringAngle);
+    add(steeringAngle);
 
     wheelAngle_FL.setPosition(664, 36, 85, 24);
     wheelAngle_FL.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -234,7 +226,7 @@ Screen1ViewBase::Screen1ViewBase()
     wheelAngle_FLBuffer[0] = 0;
     wheelAngle_FL.setWildcard(wheelAngle_FLBuffer);
     wheelAngle_FL.setTypedText(touchgfx::TypedText(T___SINGLEUSE_4QFN));
-    driverInfoPage1.add(wheelAngle_FL);
+    add(wheelAngle_FL);
 
     wheelAngle_FR.setPosition(990, 36, 85, 24);
     wheelAngle_FR.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -242,15 +234,15 @@ Screen1ViewBase::Screen1ViewBase()
     wheelAngle_FRBuffer[0] = 0;
     wheelAngle_FR.setWildcard(wheelAngle_FRBuffer);
     wheelAngle_FR.setTypedText(touchgfx::TypedText(T___SINGLEUSE_AP7Y));
-    driverInfoPage1.add(wheelAngle_FR);
+    add(wheelAngle_FR);
 
     accelIcon.setXY(456, 385);
     accelIcon.setBitmap(touchgfx::Bitmap(BITMAP_ACCELICON_ID));
-    driverInfoPage1.add(accelIcon);
+    add(accelIcon);
 
     brakeIcon.setXY(58, 385);
     brakeIcon.setBitmap(touchgfx::Bitmap(BITMAP_BRAKINGICON_ID));
-    driverInfoPage1.add(brakeIcon);
+    add(brakeIcon);
 
     actEff.setXY(10, 85);
     actEff.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -259,7 +251,7 @@ Screen1ViewBase::Screen1ViewBase()
     actEff.setWildcard(actEffBuffer);
     actEff.resizeToCurrentText();
     actEff.setTypedText(touchgfx::TypedText(T___SINGLEUSE_QTOW));
-    driverInfoPage1.add(actEff);
+    add(actEff);
 
     optEff.setXY(10, 120);
     optEff.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -268,7 +260,7 @@ Screen1ViewBase::Screen1ViewBase()
     optEff.setWildcard(optEffBuffer);
     optEff.resizeToCurrentText();
     optEff.setTypedText(touchgfx::TypedText(T___SINGLEUSE_DAUS));
-    driverInfoPage1.add(optEff);
+    add(optEff);
 
     soc.setPosition(1050, 398, 78, 21);
     soc.setColor(touchgfx::Color::getColorFromRGB(255, 247, 247));
@@ -276,38 +268,35 @@ Screen1ViewBase::Screen1ViewBase()
     socBuffer[0] = 0;
     soc.setWildcard(socBuffer);
     soc.setTypedText(touchgfx::TypedText(T___SINGLEUSE_DHY6));
-    driverInfoPage1.add(soc);
+    add(soc);
 
-    hv.setXY(398, 7);
+    hv.setPosition(365, 7, 195, 31);
     hv.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     hv.setLinespacing(0);
     hvBuffer[0] = 0;
     hv.setWildcard(hvBuffer);
-    hv.resizeToCurrentText();
     hv.setTypedText(touchgfx::TypedText(T___SINGLEUSE_IDA3));
-    driverInfoPage1.add(hv);
+    add(hv);
 
-    lv.setXY(398, 46);
+    lv.setPosition(365, 46, 195, 30);
     lv.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     lv.setLinespacing(0);
     lvBuffer[0] = 0;
     lv.setWildcard(lvBuffer);
-    lv.resizeToCurrentText();
     lv.setTypedText(touchgfx::TypedText(T___SINGLEUSE_MY9U));
-    driverInfoPage1.add(lv);
+    add(lv);
 
-    airTankPress.setXY(288, 85);
+    airTankPress.setPosition(255, 85, 305, 31);
     airTankPress.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     airTankPress.setLinespacing(0);
     airTankPressBuffer[0] = 0;
     airTankPress.setWildcard(airTankPressBuffer);
-    airTankPress.resizeToCurrentText();
     airTankPress.setTypedText(touchgfx::TypedText(T___SINGLEUSE_SSTA));
-    driverInfoPage1.add(airTankPress);
+    add(airTankPress);
 
     headlight.setXY(0, 667);
     headlight.setBitmap(touchgfx::Bitmap(BITMAP_HEADLIGHTSINACTIVE_ID));
-    driverInfoPage1.add(headlight);
+    add(headlight);
 
     linearSpeed.setPosition(212, 334, 153, 32);
     linearSpeed.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -315,39 +304,39 @@ Screen1ViewBase::Screen1ViewBase()
     linearSpeedBuffer[0] = 0;
     linearSpeed.setWildcard(linearSpeedBuffer);
     linearSpeed.setTypedText(touchgfx::TypedText(T___SINGLEUSE_Y506));
-    driverInfoPage1.add(linearSpeed);
+    add(linearSpeed);
 
-    driveTrainStatus.setPosition(772, 622, 211, 45);
+    driveTrainStatus.setPosition(763, 622, 211, 45);
     driveTrainStatus.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     driveTrainStatus.setLinespacing(0);
     driveTrainStatusBuffer[0] = 0;
     driveTrainStatus.setWildcard(driveTrainStatusBuffer);
     driveTrainStatus.setTypedText(touchgfx::TypedText(T___SINGLEUSE_T4E1));
-    driverInfoPage1.add(driveTrainStatus);
+    add(driveTrainStatus);
 
     leftIndicator.setXY(48, 271);
     leftIndicator.setBitmap(touchgfx::Bitmap(BITMAP_LEFTINDICATOR_UNLIT_ID));
-    driverInfoPage1.add(leftIndicator);
+    add(leftIndicator);
 
     rightIndicator.setXY(456, 271);
     rightIndicator.setBitmap(touchgfx::Bitmap(BITMAP_RIGHTINDICATOR_UNLIT_ID));
-    driverInfoPage1.add(rightIndicator);
+    add(rightIndicator);
 
     mil.setXY(0, 536);
     mil.setBitmap(touchgfx::Bitmap(BITMAP_MILINACTIVE_ID));
-    driverInfoPage1.add(mil);
+    add(mil);
 
     posLights.setXY(146, 667);
     posLights.setBitmap(touchgfx::Bitmap(BITMAP_POSLIGHTSINACTIVE_ID));
-    driverInfoPage1.add(posLights);
+    add(posLights);
 
     intLight.setXY(305, 667);
     intLight.setBitmap(touchgfx::Bitmap(BITMAP_INTLIGHTINACTIVE_ID));
-    driverInfoPage1.add(intLight);
+    add(intLight);
 
     hazardLight.setXY(228, 151);
     hazardLight.setBitmap(touchgfx::Bitmap(BITMAP_HAZARDLIGHTINACTIVE_ID));
-    driverInfoPage1.add(hazardLight);
+    add(hazardLight);
 
     accelChar.setPosition(398, 571, 263, 54);
     accelChar.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -357,7 +346,7 @@ Screen1ViewBase::Screen1ViewBase()
     accelCharBuffer1[0] = 0;
     accelChar.setWildcard2(accelCharBuffer2);
     accelChar.setTypedText(touchgfx::TypedText(T___SINGLEUSE_M2I0));
-    driverInfoPage1.add(accelChar);
+    add(accelChar);
 
     rmPower.setPosition(578, 757, 566, 40);
     rmPower.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -365,33 +354,16 @@ Screen1ViewBase::Screen1ViewBase()
     rmPowerBuffer[0] = 0;
     rmPower.setWildcard(rmPowerBuffer);
     rmPower.setTypedText(touchgfx::TypedText(T___SINGLEUSE_UO9E));
-    driverInfoPage1.add(rmPower);
+    add(rmPower);
 
     powertrainStatus.setXY(752, 237);
     powertrainStatus.setBitmap(touchgfx::Bitmap(BITMAP_BATTERYREADY_ID));
-    driverInfoPage1.add(powertrainStatus);
+    add(powertrainStatus);
 
-    driverInfo.add(driverInfoPage1);
-
-    driverInfoPage2.setPosition(0, 0, 1280, 797);
-    driverInfo.add(driverInfoPage2);
-
-    driverInfoPage3.setPosition(0, 0, 1280, 800);
-    driverInfo.add(driverInfoPage3);
-
-    driverInfoPage4.setPosition(0, 0, 1280, 797);
-    steeringAngle_random.setPosition(372, 374, 539, 53);
-    steeringAngle_random.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    steeringAngle_random.setLinespacing(0);
-    steeringAngle_randomBuffer[0] = 0;
-    steeringAngle_random.setWildcard(steeringAngle_randomBuffer);
-    steeringAngle_random.setTypedText(touchgfx::TypedText(T___SINGLEUSE_XU2G));
-    driverInfoPage4.add(steeringAngle_random);
-
-    driverInfo.add(driverInfoPage4);
-
-    driverInfo.setSelectedPage(0);
-    add(driverInfo);
+    parkBrake.setXY(443, 663);
+    parkBrake.setBitmap(touchgfx::Bitmap(BITMAP_PARKINGBRAKE_ID));
+    parkBrake.setVisible(false);
+    add(parkBrake);
 }
 
 Screen1ViewBase::~Screen1ViewBase()

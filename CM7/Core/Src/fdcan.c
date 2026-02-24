@@ -311,110 +311,7 @@ void CAN_Dispatcher(uint32_t canId, uint8_t* data) {
     uint64_t rawVal;
 
     switch (canId) {
-        case 0x10000004:
-            // HV_Voltage (Start: 0, Len: 16)
-            rawVal = UnpackSignal(data, 0, 16);
-            state.espe.HV_Voltage = (float)rawVal * 0.1f;
-
-            // HV_Current (Start: 16, Len: 16)
-            rawVal = UnpackSignal(data, 16, 16);
-            state.espe.HV_Current = ((float)rawVal * 0.1f) - 2500.00f;
-
-            // HV_Power (Start: 32, Len: 32)
-            rawVal = UnpackSignal(data, 32, 32);
-            state.espe.HV_Power = ((float)rawVal * 0.01f) - 2500.00f;
-
-            break;
-        case 0x10000005:
-            // SOC_Batt_HV (Start: 0, Len: 8)
-            rawVal = UnpackSignal(data, 0, 8);
-            state.esls2.SOC_Batt_HV = (uint32_t)rawVal;
-
-            // LV_Voltage (Start: 16, Len: 32)
-            rawVal = UnpackSignal(data, 16, 32);
-            state.esls2.LV_Voltage = (float)rawVal * 0.01f;
-
-            break;
-        case 0x10000006:
-            // Trq_Act_Wheel_FL (Start: 0, Len: 20)
-            rawVal = UnpackSignal(data, 0, 20);
-            state.mtc1.Trq_Act_Wheel_FL = ((float)rawVal * 0.1f) - 5000.00f;
-
-            // Trq_Req_Wheel_FL (Start: 32, Len: 20)
-            rawVal = UnpackSignal(data, 32, 20);
-            state.mtc1.Trq_Req_Wheel_FL = ((float)rawVal * 0.1f) - 5000.00f;
-
-            break;
-        case 0x10000007:
-            // Trq_Act_Wheel_FR (Start: 0, Len: 20)
-            rawVal = UnpackSignal(data, 0, 20);
-            state.mtc2.Trq_Act_Wheel_FR = ((float)rawVal * 0.1f) - 5000.00f;
-
-            // Trq_Req_Wheel_FR (Start: 32, Len: 20)
-            rawVal = UnpackSignal(data, 32, 20);
-            state.mtc2.Trq_Req_Wheel_FR = ((float)rawVal * 0.1f) - 5000.00f;
-
-            break;
-        case 0x10000008:
-            // Trq_Act_Wheel_RM (Start: 0, Len: 20)
-            rawVal = UnpackSignal(data, 0, 20);
-            state.mtc3.Trq_Act_Wheel_RM = ((float)rawVal * 0.1f) - 5000.00f;
-
-            // Trq_Req_Wheel_RM (Start: 32, Len: 20)
-            rawVal = UnpackSignal(data, 32, 20);
-            state.mtc3.Trq_Req_Wheel_RM = ((float)rawVal * 0.1f) - 5000.00f;
-
-            break;
-        case 0x10000009:
-            // Pwr_Disp (Start: 0, Len: 20)
-            rawVal = UnpackSignal(data, 0, 20);
-            state.mtc4.Pwr_Disp = ((float)rawVal * 0.01f) - 2500.00f;
-
-            // Trq_Act_Sys (Start: 32, Len: 20)
-            rawVal = UnpackSignal(data, 32, 20);
-            state.mtc4.Trq_Act_Sys = ((float)rawVal * 0.01f) - 5000.00f;
-
-            break;
-        case 0x1000000A:
-            // Sys_Eff_Act (Start: 0, Len: 16)
-            rawVal = UnpackSignal(data, 0, 16);
-            state.ep.Sys_Eff_Act = (float)rawVal * 0.01f;
-
-            // Sys_Eff_Opt (Start: 16, Len: 16)
-            rawVal = UnpackSignal(data, 16, 16);
-            state.ep.Sys_Eff_Opt = (float)rawVal * 0.01f;
-
-            // LongAccel (Start: 32, Len: 10)
-            rawVal = UnpackSignal(data, 32, 10);
-            state.ep.LongAccel = (float)rawVal * 0.01f;
-
-            // LatAccel (Start: 48, Len: 10)
-            rawVal = UnpackSignal(data, 48, 10);
-            state.ep.LatAccel = (float)rawVal * 0.01f;
-
-            break;
-        case 0x1000000B:
-            // Rng_Rem (Start: 0, Len: 20)
-            rawVal = UnpackSignal(data, 0, 20);
-            state.ep2.Rng_Rem = (float)rawVal * 0.01f;
-
-            // Rng_Added (Start: 32, Len: 20)
-            rawVal = UnpackSignal(data, 32, 20);
-            state.ep2.Rng_Added = (float)rawVal * 0.01f;
-
-            break;
-        case 0x10000011:
-            // VCU_GeneralFaults_1 (Start: 0, Len: 64)
-            rawVal = UnpackSignal(data, 0, 64);
-            state.faults.VCU_GeneralFaults_1 = (uint64_t)rawVal;
-
-            break;
-        case 0x10000012:
-            // VCU_GeneralFaults_2 (Start: 0, Len: 64)
-            rawVal = UnpackSignal(data, 0, 64);
-            state.faults.VCU_GeneralFaults_2 = (uint64_t)rawVal;
-
-            break;
+       
         case 0x10000013:
             // VCU_ComponentFaults_1 (Start: 0, Len: 64)
             rawVal = UnpackSignal(data, 0, 64);
@@ -499,39 +396,14 @@ void CAN_Dispatcher(uint32_t canId, uint8_t* data) {
             state.warnings.VCU_ComponentWarnings_6 = (uint64_t)rawVal;
 
             break;
-        case 0x10000021:
-            // Pwr_Act_MotRM (Start: 0, Len: 16)
-            rawVal = UnpackSignal(data, 0, 16);
-            state.pt.Pwr_Act_MotRM = ((float)rawVal * 0.1f) - 2500.00f;
-
-            // Pwr_Act_MotFL (Start: 16, Len: 16)
-            rawVal = UnpackSignal(data, 16, 16);
-            state.pt.Pwr_Act_MotFL = ((float)rawVal * 0.1f) - 2500.00f;
-
-            // Pwr_Act_MotFR (Start: 32, Len: 16)
-            rawVal = UnpackSignal(data, 32, 16);
-            state.pt.Pwr_Act_MotFR = ((float)rawVal * 0.1f) - 2500.00f;
-
-            break;
-        case 0x10000040:
-            // ParkBrake_Status (Start: 0, Len: 3)
-            rawVal = UnpackSignal(data, 0, 3);
-            state.gbpb.ParkBrake_Status = (uint32_t)rawVal;
-
-            // GearShift_FL_Act_Pos (Start: 4, Len: 3)
-            rawVal = UnpackSignal(data, 4, 3);
-            state.gbpb.GearShift_FL_Act_Pos = (uint32_t)rawVal;
-
-            // GearShift_FR_Act_Pos (Start: 8, Len: 3)
-            rawVal = UnpackSignal(data, 8, 3);
-            state.gbpb.GearShift_FR_Act_Pos = (uint32_t)rawVal;
-
-            break;
        
         default:
             break;
     }
 }
+
+// Extremely Rx task. Just put in the GUI MQ and forget about it.
+// the period can be made longer but IMO, this is ok.
 
 void CanRecv(void *args)
 {
@@ -554,95 +426,10 @@ void CanRecv(void *args)
             rawMsg.id = header.Identifier;
             osStatus_t status = osMessageQueuePut(guiMQHandle, &rawMsg, 0, 0);
 
-			CAN_Dispatcher(header.Identifier, rawMsg.data);
+			// CAN_Dispatcher(header.Identifier, rawMsg.data);
 		}
 		if (HAL_FDCAN_GetRxFifoFillLevel(&hfdcan1, FDCAN_RX_FIFO0) > 0) {
 		    osDelay(1);   // give time back deterministically
 		}
 	}
 }
-
-void CAN_GetElectricalSystemPowerAndEnergy(ElectricalSystemPowerAndEnergy_t* out) {
-    uint32_t primask = __get_PRIMASK();
-    __disable_irq();
-    *out = state.espe;
-    __set_PRIMASK(primask);
-}
-
-void CAN_GetElectricalSystemLvandsoc2(ElectricalSystemLVAndSOC2_t* out) {
-    uint32_t primask = __get_PRIMASK();
-    __disable_irq();
-    *out = state.esls2;
-    __set_PRIMASK(primask);
-}
-
-void CAN_GetMotorAndTorqueControl1(MotorAndTorqueControl1_t* out) {
-    uint32_t primask = __get_PRIMASK();
-    __disable_irq();
-    *out = state.mtc1;
-    __set_PRIMASK(primask);
-}
-
-void CAN_GetMotorAndTorqueControl2(MotorAndTorqueControl2_t* out) {
-    uint32_t primask = __get_PRIMASK();
-    __disable_irq();
-    *out = state.mtc2;
-    __set_PRIMASK(primask);
-}
-
-void CAN_GetMotorAndTorqueControl3(MotorAndTorqueControl3_t* out) {
-    uint32_t primask = __get_PRIMASK();
-    __disable_irq();
-    *out = state.mtc3;
-    __set_PRIMASK(primask);
-}
-
-void CAN_GetMotorAndTorqueControl4(MotorAndTorqueControl4_t* out) {
-    uint32_t primask = __get_PRIMASK();
-    __disable_irq();
-    *out = state.mtc4;
-    __set_PRIMASK(primask);
-}
-
-void CAN_GetEfficiencyAndPerformance(EfficiencyAndPerformance_t* out) {
-    uint32_t primask = __get_PRIMASK();
-    __disable_irq();
-    *out = state.ep;
-    __set_PRIMASK(primask);
-}
-
-void CAN_GetEfficiencyAndPerformance2(EfficiencyAndPerformance2_t* out) {
-    uint32_t primask = __get_PRIMASK();
-    __disable_irq();
-    *out = state.ep2;
-    __set_PRIMASK(primask);
-}
-
-void CAN_GetFaults(Faults_t* out) {
-    uint32_t primask = __get_PRIMASK();
-    __disable_irq();
-    *out = state.faults;
-    __set_PRIMASK(primask);
-}
-
-void CAN_GetWarnings(Warnings_t* out) {
-    uint32_t primask = __get_PRIMASK();
-    __disable_irq();
-    *out = state.warnings;
-    __set_PRIMASK(primask);
-}
-
-void CAN_GetPowertrain(Powertrain_t* out) {
-    uint32_t primask = __get_PRIMASK();
-    __disable_irq();
-    *out = state.pt;
-    __set_PRIMASK(primask);
-}
-
-void CAN_GetGearboxAndParkbrake(GearBoxAndParkBrake_t* out) {
-    uint32_t primask = __get_PRIMASK();
-    __disable_irq();
-    *out = state.gbpb;
-    __set_PRIMASK(primask);
-}
-/* USER CODE END 1 */
