@@ -21,99 +21,43 @@ void Screen1Presenter::deactivate()
 
 void Screen1Presenter::updateDriverControls(DriverInputAndVehicleControl_t data)
 {
-    view.showBrakeAccelposition(data.Acc_Ped_Pos, data.Brk_Ped_Pos);
-    view.showGearSelect(data.PRND_State);
-    view.updateDriveMode(data.Drv_Program);
-    view.updateSteeringAndWheelAngle(data.StWhl_Angl_Act, data.Whl_Angl_Act);
+    view.showDriverControls(data);
 }
 
 void Screen1Presenter::updateSteering(DriverInputAndVehicleControl2_t data)
 {
-    view.setSteeringAngle(data.Sbw_Rack_Pos_Act);
+    view.showSteering(data);
 }
-
-// --- Powertrain Status ---
 
 void Screen1Presenter::updatePowertrainStatus(PowertrainStatusAndReadiness_t data)
 {
-    view.updatePowertrainStatus(data.PT_Ready);
-    view.updateDrivetrainStatus(data.DrvTrain_Status);
-    view.updateMilStatus(data.MIL_Lamp_Status);
-    view.udpateIndicators(data.Turn_Indicator_State);
+    view.showPowertrainStatus(data);
 }
 
-// --- Electrical System ---
-
-void Screen1Presenter::updateHVSystem(ElectricalSystemPowerAndEnergy_t data)
-{
-    view.updateLvHvVoltage(0, data.HV_Voltage);
+void Screen1Presenter::updateMotorTorque1(Motor_And_Torque_Control_1_t data) {
+    view.showMotorTorque1(data);
 }
 
-void Screen1Presenter::updateLVSystem(ElectricalSystemLVAndSOC2_t data)
+void Screen1Presenter::updateMotorTorque2(Motor_And_Torque_Control_2_t data)
 {
-    view.updateLvHvVoltage(data.LV_Voltage, 0);
-    view.updateBatteryState(data.SOC_Batt_HV);
+    view.showMotorTorque2(data);
 }
 
-// --- Motors & Torque ---
-
-void Screen1Presenter::updateMotorTorque1(MotorAndTorqueControl1_t data)
+void Screen1Presenter::updateEfficiency(Efficiency_Performance_1_t data)
 {
+    view.showEfficiency(data);
 }
 
-void Screen1Presenter::updateMotorTorque2(MotorAndTorqueControl2_t data)
-{
-    // view.updateTorqueFR(data.Trq_Act_Wheel_FR);
-}
-
-void Screen1Presenter::updateMotorTorque3(MotorAndTorqueControl3_t data)
-{
-    // view.updateTorqueRM(data.Trq_Act_Wheel_RM);
-}
-
-void Screen1Presenter::updateMotorTorque4(MotorAndTorqueControl4_t data)
-{
-    // view.updateSystemTorque(data.Trq_Act_Sys);
-}
-
-// --- Performance & Efficiency ---
-
-void Screen1Presenter::updateEfficiency(EfficiencyAndPerformance_t data)
-{
-    // view.updateGForce(data.LatAccel, data.LongAccel);
-}
-
-void Screen1Presenter::updateRange(EfficiencyAndPerformance2_t data)
-{
-    view.updateRangeRemaining(data.Rng_Rem);
-}
-
-// --- Diagnostics ---
-
-void Screen1Presenter::updateFaults(Faults_t data)
-{
-    // if (data.VCU_GeneralFaults_1 > 0) view.showCriticalFault();
-}
-
-void Screen1Presenter::updateWarnings(Warnings_t data)
-{
-    // view.updateWarningFlags(data.VCU_GeneralWarnings_1);
-}
-
-// --- Mechanical ---
-
-void Screen1Presenter::updatePowertrain(Powertrain_t data)
-{
-    // view.updateMotorPower(data.Pwr_Act_MotFL, data.Pwr_Act_MotFR);
-}
-
-void Screen1Presenter::updateGearbox(GearBoxAndParkBrake_t data)
-{
-    // view.setParkBrakeIcon(data.ParkBrake_Status);
+void Screen1Presenter::updatePressHydLightPt(Press_Hydraulic_Light_PowerTrain_t data) {
+    view.showPressHydLightPt(data);
 }
 
 void Screen1Presenter::updateVehicleState(VehicleState1_t data)
 {
-    view.updateSpeedometer(data.Speed);
-    // view.updateOdometer(data.Odometer);
+    view.showVehicleState(data);
+}
+
+
+void Screen1Presenter::updateAux(Auxiliary_States_LV_SOC_t data) {
+    view.showAux(data);
 }

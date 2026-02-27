@@ -6,6 +6,21 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_NXN2" Alignment="Left" TypographyId="Typography1_1">
+        <Translation Language="GB">SUS PRESS REAR: &lt;value&gt; bar&#10;BRK PRESS REAR: &lt;value&gt; bar</Translation>
+      </Text>
+      <Text Id="__SingleUse_84QJ" Alignment="Left" TypographyId="Typography1_1">
+        <Translation Language="GB">SUS PRESS FRONT: &lt;value&gt; bar&#10;BRK PRESS FRONT: &lt;value&gt; bar</Translation>
+      </Text>
+      <Text Id="__SingleUse_GYY0" Alignment="Left" TypographyId="Typography2">
+        <Translation Language="GB">TRQ REQ: &lt;value&gt; Nm&#10;TRQ ACT.: &lt;value&gt; Nm</Translation>
+      </Text>
+      <Text Id="__SingleUse_09ZA" Alignment="Left" TypographyId="Typography2">
+        <Translation Language="GB">POWER: &lt;value&gt; W</Translation>
+      </Text>
+      <Text Id="__SingleUse_PGVF" Alignment="Left" TypographyId="Typography2">
+        <Translation Language="GB">POWER: &lt;value&gt; W</Translation>
+      </Text>
       <Text Id="__SingleUse_UO9E" Alignment="Center" TypographyId="Typography2">
         <Translation Language="GB">RM Power: &lt;value&gt; W</Translation>
       </Text>
@@ -17,9 +32,6 @@
       </Text>
       <Text Id="__SingleUse_Y506" Alignment="Center" TypographyId="Default">
         <Translation Language="GB">&lt;value&gt; KPH</Translation>
-      </Text>
-      <Text Id="__SingleUse_SSTA" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">Air Tank Pres.: &lt;value&gt; bar</Translation>
       </Text>
       <Text Id="__SingleUse_MY9U" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Act. LV: &lt;value&gt; V</Translation>
@@ -45,19 +57,13 @@
       <Text Id="__SingleUse_YEK9" Alignment="Center" TypographyId="Typography2">
         <Translation Language="GB">&lt;value&gt;°</Translation>
       </Text>
-      <Text Id="__SingleUse_OKGD" Alignment="Center" TypographyId="Typography2">
-        <Translation Language="GB">TORQUE: &lt;value&gt; Nm</Translation>
+      <Text Id="__SingleUse_X3OX" Alignment="Left" TypographyId="Typography2">
+        <Translation Language="GB">TRQ REQ.: &lt;value&gt; Nm&#10;TRQ ACT.: &lt;value&gt; NM</Translation>
       </Text>
-      <Text Id="__SingleUse_ATAE" Alignment="Center" TypographyId="Typography2">
-        <Translation Language="GB">TORQUE: &lt;value&gt; Nm</Translation>
+      <Text Id="__SingleUse_2X0U" Alignment="Left" TypographyId="Typography2">
+        <Translation Language="GB">TRQ REQ: &lt;value&gt; Nm&#10;TRQ ACT.: &lt;value&gt; Nm</Translation>
       </Text>
-      <Text Id="__SingleUse_X3OX" Alignment="Center" TypographyId="Typography2">
-        <Translation Language="GB">TORQUE: &lt;value&gt; Nm&#10;POWER: &lt;value&gt; W</Translation>
-      </Text>
-      <Text Id="__SingleUse_2X0U" Alignment="Center" TypographyId="Typography2">
-        <Translation Language="GB">TORQUE: &lt;value&gt; Nm&#10;POWER: &lt;value&gt; W</Translation>
-      </Text>
-      <Text Id="__SingleUse_2C4U" Alignment="Center" TypographyId="Typography1_1">
+      <Text Id="__SingleUse_2C4U" Alignment="Left" TypographyId="Typography1_1">
         <Translation Language="GB">MODE: &lt;value&gt;</Translation>
       </Text>
       <Text Id="__SingleUse_7ULC" Alignment="Left" TypographyId="Default">
@@ -84,5 +90,6 @@
     <Typography Id="Typography1" Font="verdana.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ABCDEFGHIJKLMNOPQRSTUVWXYZ" WildcardCharacterRanges="A-Z" />
     <Typography Id="Typography1_1" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ABCDEFGHIJKLMNOPQRSTUVWXYZ" WildcardCharacterRanges="A-Z" />
     <Typography Id="Typography2" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="0123456789.-" WildcardCharacterRanges="0-9" />
+    <Typography Id="Typography3" Font="verdana.ttf" Size="26" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ABCDEFGHIJKLMNOPQRSTUVWXYZ" WildcardCharacterRanges="A-Z" />
   </Typographies>
 </TextDatabase>

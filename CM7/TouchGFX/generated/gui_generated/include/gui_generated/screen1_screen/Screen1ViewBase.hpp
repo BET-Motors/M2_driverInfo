@@ -48,9 +48,10 @@ protected:
     touchgfx::Image rearLeftWheel;
     touchgfx::Image rearRightWheel;
     touchgfx::TextAreaWithTwoWildcards torquePower_FL;
+    touchgfx::TextAreaWithTwoWildcards torquePower_Rm;
+    touchgfx::TextAreaWithOneWildcard power_FL;
+    touchgfx::TextAreaWithOneWildcard power_FR;
     touchgfx::TextAreaWithTwoWildcards torquePower_FR;
-    touchgfx::TextAreaWithOneWildcard torquePower_RR;
-    touchgfx::TextAreaWithOneWildcard torquePower_RL;
     touchgfx::TextAreaWithOneWildcard steeringAngle;
     touchgfx::TextAreaWithOneWildcard wheelAngle_FL;
     touchgfx::TextAreaWithOneWildcard wheelAngle_FR;
@@ -61,7 +62,6 @@ protected:
     touchgfx::TextAreaWithOneWildcard soc;
     touchgfx::TextAreaWithOneWildcard hv;
     touchgfx::TextAreaWithOneWildcard lv;
-    touchgfx::TextAreaWithOneWildcard airTankPress;
     touchgfx::Image headlight;
     touchgfx::TextAreaWithOneWildcard linearSpeed;
     touchgfx::TextAreaWithOneWildcard driveTrainStatus;
@@ -73,8 +73,13 @@ protected:
     touchgfx::Image hazardLight;
     touchgfx::TextAreaWithTwoWildcards accelChar;
     touchgfx::TextAreaWithOneWildcard rmPower;
-    touchgfx::Image powertrainStatus;
     touchgfx::Image parkBrake;
+    touchgfx::Image dcdcStatus;
+    touchgfx::Image airCompStatus;
+    touchgfx::Image heaterStatus;
+    touchgfx::TextAreaWithTwoWildcards presFront;
+    touchgfx::TextAreaWithTwoWildcards presRear;
+    touchgfx::Image powerTrainStatus;
 
     /*
      * Wildcard Buffers
@@ -91,14 +96,18 @@ protected:
     touchgfx::Unicode::UnicodeChar torquePower_FLBuffer1[TORQUEPOWER_FLBUFFER1_SIZE];
     static const uint16_t TORQUEPOWER_FLBUFFER2_SIZE = 10;
     touchgfx::Unicode::UnicodeChar torquePower_FLBuffer2[TORQUEPOWER_FLBUFFER2_SIZE];
+    static const uint16_t TORQUEPOWER_RMBUFFER1_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar torquePower_RmBuffer1[TORQUEPOWER_RMBUFFER1_SIZE];
+    static const uint16_t TORQUEPOWER_RMBUFFER2_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar torquePower_RmBuffer2[TORQUEPOWER_RMBUFFER2_SIZE];
+    static const uint16_t POWER_FL_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar power_FLBuffer[POWER_FL_SIZE];
+    static const uint16_t POWER_FR_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar power_FRBuffer[POWER_FR_SIZE];
     static const uint16_t TORQUEPOWER_FRBUFFER1_SIZE = 10;
     touchgfx::Unicode::UnicodeChar torquePower_FRBuffer1[TORQUEPOWER_FRBUFFER1_SIZE];
     static const uint16_t TORQUEPOWER_FRBUFFER2_SIZE = 10;
     touchgfx::Unicode::UnicodeChar torquePower_FRBuffer2[TORQUEPOWER_FRBUFFER2_SIZE];
-    static const uint16_t TORQUEPOWER_RR_SIZE = 10;
-    touchgfx::Unicode::UnicodeChar torquePower_RRBuffer[TORQUEPOWER_RR_SIZE];
-    static const uint16_t TORQUEPOWER_RL_SIZE = 10;
-    touchgfx::Unicode::UnicodeChar torquePower_RLBuffer[TORQUEPOWER_RL_SIZE];
     static const uint16_t STEERINGANGLE_SIZE = 8;
     touchgfx::Unicode::UnicodeChar steeringAngleBuffer[STEERINGANGLE_SIZE];
     static const uint16_t WHEELANGLE_FL_SIZE = 8;
@@ -115,8 +124,6 @@ protected:
     touchgfx::Unicode::UnicodeChar hvBuffer[HV_SIZE];
     static const uint16_t LV_SIZE = 8;
     touchgfx::Unicode::UnicodeChar lvBuffer[LV_SIZE];
-    static const uint16_t AIRTANKPRESS_SIZE = 8;
-    touchgfx::Unicode::UnicodeChar airTankPressBuffer[AIRTANKPRESS_SIZE];
     static const uint16_t LINEARSPEED_SIZE = 8;
     touchgfx::Unicode::UnicodeChar linearSpeedBuffer[LINEARSPEED_SIZE];
     static const uint16_t DRIVETRAINSTATUS_SIZE = 10;
@@ -127,6 +134,14 @@ protected:
     touchgfx::Unicode::UnicodeChar accelCharBuffer2[ACCELCHARBUFFER2_SIZE];
     static const uint16_t RMPOWER_SIZE = 8;
     touchgfx::Unicode::UnicodeChar rmPowerBuffer[RMPOWER_SIZE];
+    static const uint16_t PRESFRONTBUFFER1_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar presFrontBuffer1[PRESFRONTBUFFER1_SIZE];
+    static const uint16_t PRESFRONTBUFFER2_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar presFrontBuffer2[PRESFRONTBUFFER2_SIZE];
+    static const uint16_t PRESREARBUFFER1_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar presRearBuffer1[PRESREARBUFFER1_SIZE];
+    static const uint16_t PRESREARBUFFER2_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar presRearBuffer2[PRESREARBUFFER2_SIZE];
 
 private:
 

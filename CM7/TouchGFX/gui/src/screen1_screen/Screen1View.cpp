@@ -13,27 +13,26 @@ void Screen1View::setupScreen()
 //	soc.invalidate();
     Unicode::snprintf(textAreaPrndBuffer, TEXTAREAPRND_SIZE, "%c", 'P');
     textAreaPrnd.invalidate();
-	Unicode::snprintf(rangeBuffer, RANGE_SIZE, "%d", 100);
+	Unicode::snprintf(rangeBuffer, RANGE_SIZE, "%d", 0);
 	range.invalidate();
-	Unicode::snprintf(odoBuffer, ODO_SIZE, "%d", 1231230);
+	Unicode::snprintf(odoBuffer, ODO_SIZE, "%d", 0);
 	odo.invalidate();
-	Unicode::snprintf(steeringAngleBuffer, STEERINGANGLE_SIZE, "%d", 180);
+	Unicode::snprintf(steeringAngleBuffer, STEERINGANGLE_SIZE, "%d", 0);
 	steeringAngle.invalidate();
-	Unicode::snprintf(socBuffer, SOC_SIZE, "%d", 000);
+	Unicode::snprintf(socBuffer, SOC_SIZE, "%d", 0);
 	soc.invalidate();
-	Unicode::fromUTF8((const uint8_t*)"SPORT", driveModeBuffer, DRIVEMODE_SIZE);
+	Unicode::fromUTF8((const uint8_t*)"ECO", driveModeBuffer, DRIVEMODE_SIZE);
 	driveMode.invalidate();
-	Unicode::snprintf(torquePower_FLBuffer1, TORQUEPOWER_FLBUFFER1_SIZE, "%d", 10000);
-	Unicode::snprintf(torquePower_FLBuffer2, TORQUEPOWER_FLBUFFER2_SIZE, "%d", 10000);
+	Unicode::snprintf(torquePower_FLBuffer1, TORQUEPOWER_FLBUFFER1_SIZE, "%d", 0);
+	Unicode::snprintf(torquePower_FLBuffer2, TORQUEPOWER_FLBUFFER2_SIZE, "%d", 0);
 	torquePower_FL.invalidate();
-	Unicode::snprintf(torquePower_FRBuffer1, TORQUEPOWER_FRBUFFER1_SIZE, "%d", 10000);
-	Unicode::snprintf(torquePower_FRBuffer2, TORQUEPOWER_FRBUFFER2_SIZE, "%d", 10000);
+	Unicode::snprintf(torquePower_FRBuffer1, TORQUEPOWER_FRBUFFER1_SIZE, "%d", 0);
+	Unicode::snprintf(torquePower_FRBuffer2, TORQUEPOWER_FRBUFFER2_SIZE, "%d", 0);
 	torquePower_FR.invalidate();
-	Unicode::snprintf(torquePower_RRBuffer, TORQUEPOWER_RR_SIZE, "%d", 10000);
-	Unicode::snprintf(torquePower_RLBuffer, TORQUEPOWER_RL_SIZE, "%d", 10000);
-	torquePower_RR.invalidate();
-	torquePower_RL.invalidate();
-	Unicode::snprintf(linearSpeedBuffer, LINEARSPEED_SIZE, "%d", 000);
+	Unicode::snprintf(torquePower_RmBuffer1, TORQUEPOWER_RMBUFFER1_SIZE, "%d", 0);
+	Unicode::snprintf(torquePower_RmBuffer2, TORQUEPOWER_RMBUFFER2_SIZE, "%d", 0);
+	torquePower_Rm.invalidate();
+	Unicode::snprintf(linearSpeedBuffer, LINEARSPEED_SIZE, "%d", 0);
 	linearSpeed.invalidate();
 	Unicode::snprintf(driveTrainStatusBuffer, DRIVETRAINSTATUS_SIZE, "%s", "IDLE");
 	driveTrainStatus.invalidate();
@@ -43,65 +42,15 @@ void Screen1View::setupScreen()
 	parkBrake.setVisible(false);
 }
 
-void Screen1View::showBrakeAccelposition(uint8_t brakePosition, uint8_t accelPosition) {
-	accelPedal.setValue(accelPosition);
-	brakePedal.setValue(brakePosition);
-}
+void Screen1View::showDriverControls(DriverInputAndVehicleControl_t data) {
+	accelPedal.setValue(data.Acc_Ped_Pos);
+	accelPedal.invalidate();
+	brakePedal.setValue(data.Brk_Ped_Pos);
+	brakePedal.invalidate();
 
-void Screen1View::updateMilStatus(uint8_t status) {
-	if(status == 1) {
-		milActive = true;
-	} else {
-		milActive = false;
-	}
-}
-
-void Screen1View::updateLightingStatus(Lights_t status) {
-	if(status.lowBeam) {
-		headlight.setBitmap(BITMAP_LOWBEAM_ID);
-	} else if(status.highBeam) {
-		headlight.setBitmap(BITMAP_HIGHBEAM_ID);
-	}
-
-	if(status.posLights) {
-		posLights.setBitmap(BITMAP_POSLIGHTSACTIVE_ID);
-	} else if(!status.posLights) {
-		posLights.setBitmap(BITMAP_POSLIGHTSINACTIVE_ID);
-	}
-
-	if(status.intLights) {
-		intLight.setBitmap(BITMAP_INTLIGHTACTIVE_ID);
-	} else if(!status.intLights) {
-		intLight.setBitmap(BITMAP_INTLIGHTINACTIVE_ID);
-	}
-
-	if(!status.lowBeam && !status.highBeam) {
-		headlight.setBitmap(BITMAP_HEADLIGHTSINACTIVE_ID);
-	}
-}
-
-void Screen1View::updateRangeRemaining(uint16_t rangeVal) {
-	Unicode::snprintf(rangeBuffer, RANGE_SIZE, "%d", rangeVal);
-	range.invalidate();
-}
-
-void Screen1View::updateLvHvVoltage(uint16_t lvValue, uint16_t hvValue) {
-	Unicode::snprintf(hvBuffer, HV_SIZE, "%d", hvValue);
-	hv.invalidate();
-	Unicode::snprintf(lvBuffer, LV_SIZE, "%d", lvValue);
-	lv.invalidate();
-}
-
-void Screen1View::setSteeringAngle(uint32_t rackAngle) {
-	/* Unicode::snprintf(steeringAngle_randomBuffer, STEERINGANGLE_RANDOM_SIZE, "%d", rackAngle);
-	steeringAngle_random.invalidate(); */
-}
-
-void Screen1View::showGearSelect(uint8_t prndState)
-{
 	char gearString = '-'; // Default if signal is invalid
 
-	switch (prndState)
+	switch (data.PRND_State)
 	{
 	case 0: // CAN says 0 is Neutral
 		gearString = 'N';
@@ -124,97 +73,65 @@ void Screen1View::showGearSelect(uint8_t prndState)
 		parkBrake.setVisible(false);
 		break;
 	}
+
 	Unicode::snprintf(textAreaPrndBuffer, TEXTAREAPRND_SIZE, "%c", gearString);
 	textAreaPrnd.invalidate();
 	parkBrake.invalidate();
-}
 
-void Screen1View::updatePowertrainStatus(uint8_t status) {
-	switch(status) {
+	switch(data.Drv_Program) {
 		case 0:
-			powertrainStatus.setBitmap(BITMAP_BATTERYNOTREADY_ID);
+			Unicode::fromUTF8((const uint8_t*)"ECO", driveModeBuffer, DRIVEMODE_SIZE);
 			break;
 		case 1:
-			powertrainStatus.setBitmap(BITMAP_BATTERYREADY_ID);
+			Unicode::fromUTF8((const uint8_t*)"SPORT", driveModeBuffer, DRIVEMODE_SIZE);
+			break;
+		case 2:
+			Unicode::fromUTF8((const uint8_t*)"SNOW", driveModeBuffer, DRIVEMODE_SIZE);
+			break;
+		default:
+			Unicode::fromUTF8((const uint8_t*)"ECO", driveModeBuffer, DRIVEMODE_SIZE);
 			break;
 	}
-}
+	driveMode.invalidate();
 
-void Screen1View::updateSteeringAndWheelAngle(uint16_t steeringWhlAng, uint16_t wheelAngle) {
-	float steeringRad = steeringWhlAng * (3.14159f / 180.0f); // angles are in °
-	float wheelRad = wheelAngle * (3.14159f / 180.0f);
+	float steeringRad = data.StWhl_Angl_Act * (3.14159f / 180.0f); // angles are in °
+	float wheelRad = data.Whl_Angl_Act * (3.14159f / 180.0f);
 
-	Unicode::snprintfFloat(steeringAngleBuffer, STEERINGANGLE_SIZE, "%.1f", steeringWhlAng);
+	Unicode::snprintfFloat(steeringAngleBuffer, STEERINGANGLE_SIZE, "%.1f", data.StWhl_Angl_Act);
 	steeringAngle.invalidate();
 
 	steeringWheel.updateZAngle(steeringRad);
 	steeringWheel.invalidate();
 
-	frontLeftWheel.updateZAngle(steeringRad);
-	frontRightWheel.updateZAngle(steeringRad);
+	frontLeftWheel.updateZAngle(wheelRad);
+	frontRightWheel.updateZAngle(wheelRad);
 
 	// Invalidate tires to redraw
 	frontLeftWheel.invalidate();
 	frontRightWheel.invalidate();
 
-	Unicode::snprintfFloat(wheelAngle_FLBuffer, WHEELANGLE_FL_SIZE, "%.1f", wheelAngle);
+	Unicode::snprintfFloat(wheelAngle_FLBuffer, WHEELANGLE_FL_SIZE, "%.1f",  data.Whl_Angl_Act);
 	wheelAngle_FL.invalidate();
-	Unicode::snprintfFloat(wheelAngle_FRBuffer, WHEELANGLE_FR_SIZE, "%.1f", wheelAngle);
+	Unicode::snprintfFloat(wheelAngle_FRBuffer, WHEELANGLE_FR_SIZE, "%.1f",  data.Whl_Angl_Act);
 	wheelAngle_FR.invalidate();
-
-	// TODO: THERE MUST BE SOME CORRELATION BETWEEN THE STEERING ANGLE AND THE WHEEL ANGLE
-	// I.E. FOR 1° MOVEMENT OF THE STEERING WHEEL, HOW MUCH DOES THE STEERING WHEEL MOVES.
-	// This will be required when we check if the steering wheel angle and the wheel
-	// angle are correlated. For now, we simply check if they are equal.
-
-//	if((int)steeringRad != (int)wheelRad) {
-//		frontLeftWheel.cancelAnimationTextureMapperAnimation();
-//		frontRightWheel.cancelAnimationTextureMapperAnimation();
-//		frontLeftWheel.setBitmap(BITMAP_TYREINCORRECT_ID);
-//		frontRightWheel.setBitmap(BITMAP_TYREINCORRECT_ID);
-//		frontLeftWheel.invalidate();
-//		frontRightWheel.invalidate();
-//		frontLeftWheel.startAnimation();
-//		frontRightWheel.startAnimation();
-//	}
 }
 
-void Screen1View::updateAccel(uint16_t latAccel, uint16_t longAccel) {
-	Unicode::snprintf(accelCharBuffer1, ACCELCHARBUFFER1_SIZE, "%d", latAccel);
-	Unicode::snprintf(accelCharBuffer2, ACCELCHARBUFFER2_SIZE, "%d", longAccel);
-	accelChar.invalidate();
+void Screen1View::showSteering(DriverInputAndVehicleControl2_t data) {
+	if(data.Sbw_Rack_Pos_Req != data.Sbw_Rack_Pos_Act) {
+		frontLeftWheel.setBitmap(BITMAP_TYRE_ID);
+	} else {
+		frontLeftWheel.setBitmap(BITMAP_TYREINCORRECT_ID);
+	}
 }
 
-void Screen1View::updateSysEff(uint16_t actEffVal, uint16_t optEffVal) {
-	Unicode::snprintf(optEffBuffer, ACTEFF_SIZE, "%d", optEffVal);
-	Unicode::snprintf(actEffBuffer, OPTEFF_SIZE, "%d", actEffVal);
-	actEff.invalidate();
-	optEff.invalidate();
-}
+void Screen1View::showPowertrainStatus(PowertrainStatusAndReadiness_t data) {
+	if(data.MIL_Lamp_Status == 1) {
+		milActive = true;
+	} else {
+		milActive = false;
+	}
 
-void Screen1View::updateFlTorqueAndPower(uint32_t flTrqAct, uint32_t flPwrAct) {
-	Unicode::snprintf(torquePower_FLBuffer1, TORQUEPOWER_FLBUFFER1_SIZE, "%d", flTrqAct);
-	Unicode::snprintf(torquePower_FLBuffer2, TORQUEPOWER_FLBUFFER2_SIZE, "%d", flPwrAct);
-	torquePower_FL.invalidate();
-}
-
-void Screen1View::updateFrTorqueAndPower(uint32_t frTrqAct, uint32_t frPwrAct) {
-	Unicode::snprintf(torquePower_FRBuffer1, TORQUEPOWER_FRBUFFER1_SIZE, "%d", frTrqAct);
-	Unicode::snprintf(torquePower_FRBuffer2, TORQUEPOWER_FRBUFFER2_SIZE, "%d", frPwrAct);
-	torquePower_FR.invalidate();
-}
-
-void Screen1View::updateRlRrTorqueAndPower(uint32_t RlTrqAct, uint32_t RrTrqAct, uint32_t RmPower) {
-	Unicode::snprintf(torquePower_RRBuffer, TORQUEPOWER_RR_SIZE, "%d", RlTrqAct);
-	Unicode::snprintf(torquePower_RLBuffer, TORQUEPOWER_RL_SIZE, "%d", RrTrqAct);
-	torquePower_RR.invalidate();
-	torquePower_RL.invalidate();
-	Unicode::snprintf(rmPowerBuffer, RMPOWER_SIZE, "%d", RmPower);
-	rmPower.invalidate();
-}
-
-void Screen1View::udpateIndicators(uint8_t status) {
-	switch(status) {
+	switch(data.Turn_Indicator_State) {
 		case 0:
 			canLeftActive = false;
 			canRightActive = false;
@@ -224,10 +141,14 @@ void Screen1View::udpateIndicators(uint8_t status) {
 		case 1:
 			canLeftActive = true;
 			canRightActive = false;
+			hazardLight.setBitmap(BITMAP_HAZARDLIGHTINACTIVE_ID);
+			hazardLight.invalidate();
 			break;
 		case 2:
 			canLeftActive = false;
 			canRightActive = true;
+			hazardLight.setBitmap(BITMAP_HAZARDLIGHTINACTIVE_ID);
+			hazardLight.invalidate();
 			break;
 		case 3:
 			canRightActive = true;
@@ -242,10 +163,23 @@ void Screen1View::udpateIndicators(uint8_t status) {
 			hazardLight.invalidate();
 			break;
 	}
-}
 
-void Screen1View::updateDrivetrainStatus(uint8_t status) {
-	switch(status) {
+	switch(data.PT_Ready) {
+		case 0:
+			powerTrainStatus.setBitmap(BITMAP_PTSTATUSNOTREADY_ID);
+			powerTrainStatus.invalidate();
+			break;
+		case 1:
+			powerTrainStatus.setBitmap(BITMAP_PTREADY_ID);
+			powerTrainStatus.invalidate();
+			break;
+		default:
+			powerTrainStatus.setBitmap(BITMAP_PTSTATUSNOTREADY_ID);
+			powerTrainStatus.invalidate();
+			break;
+	}
+
+	switch(data.DrvTrain_Status) {
 		case 0:
 			Unicode::fromUTF8((const uint8_t*)"IDLE", driveTrainStatusBuffer, DRIVETRAINSTATUS_SIZE);
 			driveTrainStatus.invalidate();
@@ -269,33 +203,153 @@ void Screen1View::updateDrivetrainStatus(uint8_t status) {
 	}
 }
 
-void Screen1View::updateDriveMode(uint8_t status) {
-	switch(status) {
+void Screen1View::showMotorTorque1(Motor_And_Torque_Control_1_t data) {
+	Unicode::snprintf(torquePower_FLBuffer1, TORQUEPOWER_FLBUFFER1_SIZE, "%d", data.Trq_Req_Wheel_FL);
+	Unicode::snprintf(torquePower_FLBuffer2, TORQUEPOWER_FLBUFFER2_SIZE, "%d", data.Trq_Act_Wheel_FL);
+	torquePower_FL.invalidate();
+
+	Unicode::snprintf(torquePower_FRBuffer1, TORQUEPOWER_FRBUFFER1_SIZE, "%d", data.Trq_Req_Wheel_FR);
+	Unicode::snprintf(torquePower_FRBuffer2, TORQUEPOWER_FRBUFFER2_SIZE, "%d", data.Trq_Act_Wheel_FR);
+	torquePower_FR.invalidate();
+}
+
+void Screen1View::showMotorTorque2(Motor_And_Torque_Control_2_t data) {
+	Unicode::snprintf(torquePower_RmBuffer1, TORQUEPOWER_FRBUFFER1_SIZE, "%d", data.Trq_Req_Wheel_RM);
+	Unicode::snprintf(torquePower_RmBuffer2, TORQUEPOWER_FRBUFFER2_SIZE, "%d", data.Trq_Act_Wheel_RM);
+	torquePower_Rm.invalidate();
+}
+
+void Screen1View::showEfficiency(Efficiency_Performance_1_t data) {
+	Unicode::snprintf(optEffBuffer, ACTEFF_SIZE, "%d", data.Sys_Eff_Opt);
+	Unicode::snprintf(actEffBuffer, OPTEFF_SIZE, "%d", data.Sys_Eff_Act);
+	actEff.invalidate();
+	optEff.invalidate();
+
+	Unicode::snprintf(accelCharBuffer1, ACCELCHARBUFFER1_SIZE, "%d", data.LongAccel);
+	Unicode::snprintf(accelCharBuffer2, ACCELCHARBUFFER2_SIZE, "%d", data.LatAccel);
+	accelChar.invalidate();
+
+	Unicode::snprintf(rangeBuffer, RANGE_SIZE, "%d", data.Rng_Rem);
+	range.invalidate();
+}
+
+void Screen1View::showPressHydLightPt(Press_Hydraulic_Light_PowerTrain_t data) {
+	Unicode::snprintf(presFrontBuffer1, PRESFRONTBUFFER1_SIZE, "%d", data.Pres_Susp_Front);
+	Unicode::snprintf(presFrontBuffer2, PRESFRONTBUFFER2_SIZE, "%d", data.Pres_Brk_Front);
+	presFront.invalidate();
+
+	Unicode::snprintf(presRearBuffer1, PRESREARBUFFER1_SIZE, "%d", data.Pres_Susp_Rear);
+	Unicode::snprintf(presRearBuffer2, PRESREARBUFFER2_SIZE, "%d", data.Pres_Brk_Rear);
+	presFront.invalidate();
+
+	if(data.LowBeam_St) {
+		headlight.setBitmap(BITMAP_LOWBEAM_ID);
+	} else if(data.HighBeam_St) {
+		headlight.setBitmap(BITMAP_HIGHBEAM_ID);
+	} else {
+		headlight.setBitmap(BITMAP_HEADLIGHTSINACTIVE_ID);
+	}
+	headlight.invalidate();
+
+	if(data.PosLight_St) {
+		posLights.setBitmap(BITMAP_POSLIGHTSACTIVE_ID);
+	} else if(!data.PosLight_St) {
+		posLights.setBitmap(BITMAP_POSLIGHTSINACTIVE_ID);
+	}
+	posLights.invalidate();
+
+	if(data.IntLight_St) {
+		intLight.setBitmap(BITMAP_INTLIGHTACTIVE_ID);
+	} else if(!data.IntLight_St) {
+		intLight.setBitmap(BITMAP_INTLIGHTINACTIVE_ID);
+	}
+	intLight.invalidate();
+
+	Unicode::snprintf(rmPowerBuffer, RMPOWER_SIZE, "%d", data.Pwr_Act_MotRM);
+	rmPower.invalidate();
+	Unicode::snprintf(power_FLBuffer, POWER_FL_SIZE, "%d", data.Pwr_Act_MotFL);
+	power_FL.invalidate();
+	Unicode::snprintf(power_FRBuffer, POWER_FR_SIZE, "%d", data.Pwr_Act_MotFR);
+	power_FR.invalidate();
+}
+
+void Screen1View::showAux(Auxiliary_States_LV_SOC_t data) {
+	switch(data.DCDC_State) {
 		case 0:
-			Unicode::fromUTF8((const uint8_t*)"ECO", driveModeBuffer, DRIVEMODE_SIZE);
-			driveMode.invalidate();
+			dcdcStatus.setBitmap(BITMAP_DCDCOFF_ID);
 			break;
 		case 1:
-			Unicode::fromUTF8((const uint8_t*)"SPORT", driveModeBuffer, DRIVEMODE_SIZE);
-			driveMode.invalidate();
+			dcdcStatus.setBitmap(BITMAP_DCDCPRECHARGE_ID);
 			break;
 		case 2:
-			Unicode::fromUTF8((const uint8_t*)"SNOW", driveModeBuffer, DRIVEMODE_SIZE);
-			driveMode.invalidate();
+			dcdcStatus.setBitmap(BITMAP_DCDCNORMAL_ID);
+			break;
+		case 3:
+			dcdcStatus.setBitmap(BITMAP_DCDCERROR_ID);
+			break;
+		default:
+			dcdcStatus.setBitmap(BITMAP_DCDCOFF_ID);
 			break;
 	}
-}
+	dcdcStatus.invalidate();
 
-void Screen1View::updateBatteryState(uint8_t charge) {
-	batteryState.setValue(charge); // assuming the charge is in %
-	Unicode::snprintf(socBuffer, SOC_SIZE, "%d", charge);
+	switch(data.AirComp_State) {
+		case 0:
+			airCompStatus.setBitmap(BITMAP_AIRCOMPOFF_ID);
+			break;
+		case 1:
+			airCompStatus.setBitmap(BITMAP_AIRCOMPPRESCHARGE_ID);
+			break;
+		case 2:
+			airCompStatus.setBitmap(BITMAP_AIRCOMPNORMAL_ID);
+			break;
+		case 3:
+			airCompStatus.setBitmap(BITMAP_AIRCOMPERROR_ID);
+			break;
+		default:
+			airCompStatus.setBitmap(BITMAP_AIRCOMPOFF_ID);
+			break;
+	}
+	airCompStatus.invalidate();
+
+	switch(data.Heater_State) {
+		case 0:
+			heaterStatus.setBitmap(BITMAP_HEATEROFF_ID);
+			break;
+		case 1:
+			heaterStatus.setBitmap(BITMAP_HEATERPRECHARGE_ID);
+			break;
+		case 2:
+			heaterStatus.setBitmap(BITMAP_HEATERON_ID);
+			break;
+		case 3:
+			heaterStatus.setBitmap(BITMAP_HEATERFAULT_ID);
+			break;
+		default:
+			heaterStatus.setBitmap(BITMAP_HEATEROFF_ID);
+			break;
+	}
+	heaterStatus.invalidate();
+
+	batteryState.setValue(data.SOC_Batt_HV); // assuming the charge is in %
+	Unicode::snprintf(socBuffer, SOC_SIZE, "%d", data.SOC_Batt_HV);
 	soc.invalidate();
+	batteryState.invalidate();
+
+	Unicode::snprintf(hvBuffer, HV_SIZE, "%d", data.DCDC_HV_Voltage);
+	hv.invalidate();
+	Unicode::snprintf(lvBuffer, LV_SIZE, "%d", data.LV_Voltage);
+	lv.invalidate();
 }
 
-void Screen1View::updateSpeedometer(float speed) {
-	speedo.setValue((int)speed);
-    Unicode::snprintfFloat(linearSpeedBuffer, LINEARSPEED_SIZE, "%0.1f", speed);
+void Screen1View::showVehicleState(VehicleState1_t data)  {
+	speedo.setValue(data.Speed);
+	speedo.invalidate();
+    Unicode::snprintfFloat(linearSpeedBuffer, LINEARSPEED_SIZE, "%0.1f", data.Speed);
 	linearSpeed.invalidate();
+
+	Unicode::snprintf(odoBuffer, ODO_SIZE, "%df", data.Odometer);
+	odo.invalidate();
 }
 
 void Screen1View::tearDownScreen()

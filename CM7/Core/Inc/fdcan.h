@@ -42,44 +42,6 @@ extern osMessageQueueId_t guiMQHandle;
 
 /* USER CODE BEGIN Private defines */
 
-// --------------------------------------------------------
-// Consolidated Internal State
-// --------------------------------------------------------
-typedef struct
-{
-    // Driver Inputs
-    DriverInputAndVehicleControl_t          divc;
-    DriverInputAndVehicleControl2_t         divc2;
-
-    // Powertrain Status
-    PowertrainStatusAndReadiness_t          ptsr;
-    Powertrain_t                            pt;
-    GearBoxAndParkBrake_t                   gbpb;
-
-    // Motors & Torque
-    MotorAndTorqueControl1_t                mtc1;
-    MotorAndTorqueControl2_t                mtc2;
-    MotorAndTorqueControl3_t                mtc3;
-    MotorAndTorqueControl4_t                mtc4;
-
-    // Electrical System
-    ElectricalSystemPowerAndEnergy_t        espe;
-    ElectricalSystemLVAndSOC2_t             esls2;
-
-    // Performance & Efficiency
-    EfficiencyAndPerformance_t              ep;
-    EfficiencyAndPerformance2_t             ep2;
-
-    // Vehicle State
-    VehicleState1_t                         vs1;
-
-    // Diagnostics
-    Faults_t                                faults;
-    Warnings_t                              warnings;
-
-} CAN_Internal_State_t;
-
-void CAN_Dispatcher(uint32_t canId, uint8_t* data);
 void CanRecv(void *args);
 
 uint64_t UnpackSignal(const uint8_t* data, uint8_t startBit, uint8_t length);
@@ -90,24 +52,6 @@ typedef struct {
     uint32_t id;       // The CAN Identifier (Standard or Extended)
     uint8_t  data[8];  // The 8 bytes of payload data
 } CAN_Raw_Msg_t;
-
-// --- Getters ---
-void CAN_GetDriverInputAndVehicleControl(DriverInputAndVehicleControl_t* out);
-void CAN_GetDriverInputAndVehicleControl2(DriverInputAndVehicleControl2_t* out);
-void CAN_GetPowertrainStatusAndReadiness(PowertrainStatusAndReadiness_t* out);
-void CAN_GetElectricalSystemPowerAndEnergy(ElectricalSystemPowerAndEnergy_t* out);
-void CAN_GetElectricalSystemLvandsoc2(ElectricalSystemLVAndSOC2_t* out);
-void CAN_GetMotorAndTorqueControl1(MotorAndTorqueControl1_t* out);
-void CAN_GetMotorAndTorqueControl2(MotorAndTorqueControl2_t* out);
-void CAN_GetMotorAndTorqueControl3(MotorAndTorqueControl3_t* out);
-void CAN_GetMotorAndTorqueControl4(MotorAndTorqueControl4_t* out);
-void CAN_GetEfficiencyAndPerformance(EfficiencyAndPerformance_t* out);
-void CAN_GetEfficiencyAndPerformance2(EfficiencyAndPerformance2_t* out);
-void CAN_GetFaults(Faults_t* out);
-void CAN_GetWarnings(Warnings_t* out);
-void CAN_GetPowertrain(Powertrain_t* out);
-void CAN_GetGearboxAndParkbrake(GearBoxAndParkBrake_t* out);
-void CAN_GetVehicleState1(VehicleState1_t* out);
 
 /* USER CODE END Private defines */
 

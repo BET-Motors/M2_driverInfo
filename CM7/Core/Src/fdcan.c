@@ -26,7 +26,6 @@
 
 FDCAN_HandleTypeDef hfdcan1;
 FDCAN_HandleTypeDef hfdcan2;
-CAN_Internal_State_t state;
 
 /* FDCAN1 init function */
 void MX_FDCAN1_Init(void)
@@ -304,112 +303,22 @@ uint64_t UnpackSignal(const uint8_t* data, uint8_t start, uint8_t len) {
     return val & mask;
 }
 
-// -----------------------------------------------------------
-// Main Rx Task
-// -----------------------------------------------------------
-void CAN_Dispatcher(uint32_t canId, uint8_t* data) {
-    uint64_t rawVal;
-
-    switch (canId) {
-       
-        case 0x10000013:
-            // VCU_ComponentFaults_1 (Start: 0, Len: 64)
-            rawVal = UnpackSignal(data, 0, 64);
-            state.faults.VCU_ComponentFaults_1 = (uint64_t)rawVal;
-
-            break;
-        case 0x10000014:
-            // VCU_ComponentFaults_2 (Start: 0, Len: 64)
-            rawVal = UnpackSignal(data, 0, 64);
-            state.faults.VCU_ComponentFaults_2 = (uint64_t)rawVal;
-
-            break;
-        case 0x10000015:
-            // VCU_ComponentFaults_3 (Start: 0, Len: 64)
-            rawVal = UnpackSignal(data, 0, 64);
-            state.faults.VCU_ComponentFaults_3 = (uint64_t)rawVal;
-
-            break;
-        case 0x10000016:
-            // VCU_ComponentFaults_4 (Start: 0, Len: 64)
-            rawVal = UnpackSignal(data, 0, 64);
-            state.faults.VCU_ComponentFaults_4 = (uint64_t)rawVal;
-
-            break;
-        case 0x10000017:
-            // VCU_ComponentFaults_5 (Start: 0, Len: 64)
-            rawVal = UnpackSignal(data, 0, 64);
-            state.faults.VCU_ComponentFaults_5 = (uint64_t)rawVal;
-
-            break;
-        case 0x10000018:
-            // VCU_ComponentFaults_6 (Start: 0, Len: 64)
-            rawVal = UnpackSignal(data, 0, 64);
-            state.faults.VCU_ComponentFaults_6 = (uint64_t)rawVal;
-
-            break;
-        case 0x10000019:
-            // VCU_GeneralWarnings_1 (Start: 0, Len: 64)
-            rawVal = UnpackSignal(data, 0, 64);
-            state.warnings.VCU_GeneralWarnings_1 = (uint64_t)rawVal;
-
-            break;
-        case 0x1000001A:
-            // VCU_GeneralWarnings_2 (Start: 0, Len: 64)
-            rawVal = UnpackSignal(data, 0, 64);
-            state.warnings.VCU_GeneralWarnings_2 = (uint64_t)rawVal;
-
-            break;
-        case 0x1000001B:
-            // VCU_ComponentWarnings_1 (Start: 0, Len: 64)
-            rawVal = UnpackSignal(data, 0, 64);
-            state.warnings.VCU_ComponentWarnings_1 = (uint64_t)rawVal;
-
-            break;
-        case 0x1000001C:
-            // VCU_ComponentWarnings_2 (Start: 0, Len: 64)
-            rawVal = UnpackSignal(data, 0, 64);
-            state.warnings.VCU_ComponentWarnings_2 = (uint64_t)rawVal;
-
-            break;
-        case 0x1000001D:
-            // VCU_ComponentWarnings_3 (Start: 0, Len: 64)
-            rawVal = UnpackSignal(data, 0, 64);
-            state.warnings.VCU_ComponentWarnings_3 = (uint64_t)rawVal;
-
-            break;
-        case 0x1000001E:
-            // VCU_ComponentWarnings_4 (Start: 0, Len: 64)
-            rawVal = UnpackSignal(data, 0, 64);
-            state.warnings.VCU_ComponentWarnings_4 = (uint64_t)rawVal;
-
-            break;
-        case 0x1000001F:
-            // VCU_ComponentWarnings_5 (Start: 0, Len: 64)
-            rawVal = UnpackSignal(data, 0, 64);
-            state.warnings.VCU_ComponentWarnings_5 = (uint64_t)rawVal;
-
-            break;
-        case 0x10000020:
-            // VCU_ComponentWarnings_6 (Start: 0, Len: 64)
-            rawVal = UnpackSignal(data, 0, 64);
-            state.warnings.VCU_ComponentWarnings_6 = (uint64_t)rawVal;
-
-            break;
-       
-        default:
-            break;
+void SafeQueuePut(CAN_Raw_Msg_t* msg) {
+    if (osMessageQueueGetSpace(guiMQHandle) == 0) {
+        CAN_Raw_Msg_t dummy;
+        osMessageQueueGet(guiMQHandle, &dummy, NULL, 0);
     }
+    osMessageQueuePut(guiMQHandle, msg, 0, 0);
 }
 
-// Extremely Rx task. Just put in the GUI MQ and forget about it.
+// Extremely simple Rx task. Just put in the GUI MQ and forget about it.
 // the period can be made longer but IMO, this is ok.
 
 void CanRecv(void *args)
 {
 	FDCAN_RxHeaderTypeDef header;
 	uint8_t data[64];
-    CAN_Raw_Msg_t rawMsg;
+  CAN_Raw_Msg_t rawMsg;
 	const uint32_t taskPeriod = 10;
 	uint32_t tick = osKernelGetTickCount();
 
@@ -425,8 +334,9 @@ void CanRecv(void *args)
             
             rawMsg.id = header.Identifier;
             osStatus_t status = osMessageQueuePut(guiMQHandle, &rawMsg, 0, 0);
-
-			// CAN_Dispatcher(header.Identifier, rawMsg.data);
+            if(status != osOK) {
+              SafeQueuePut(rawMsg.data);
+            }
 		}
 		if (HAL_FDCAN_GetRxFifoFillLevel(&hfdcan1, FDCAN_RX_FIFO0) > 0) {
 		    osDelay(1);   // give time back deterministically

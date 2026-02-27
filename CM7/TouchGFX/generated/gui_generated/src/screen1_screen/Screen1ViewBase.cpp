@@ -73,7 +73,7 @@ Screen1ViewBase::Screen1ViewBase()
     brakePedal.setArcPosition(0, 0, 240, 240);
     add(brakePedal);
 
-    range.setPosition(10, 8, 259, 30);
+    range.setPosition(10, 8, 326, 38);
     range.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     range.setLinespacing(0);
     rangeBuffer[0] = 0;
@@ -81,7 +81,7 @@ Screen1ViewBase::Screen1ViewBase()
     range.setTypedText(touchgfx::TypedText(T___SINGLEUSE_RXWM));
     add(range);
 
-    odo.setPosition(10, 46, 245, 30);
+    odo.setPosition(10, 46, 346, 30);
     odo.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     odo.setLinespacing(0);
     odoBuffer[0] = 0;
@@ -125,7 +125,7 @@ Screen1ViewBase::Screen1ViewBase()
     add(frontRightWheel);
 
     batteryState.setBackground(touchgfx::Bitmap(BITMAP_BATTERSOC_BG_ID));
-    batteryState.setPosition(997, 337, 184, 184);
+    batteryState.setPosition(1032, 321, 184, 184);
     batteryState.setCenter(92, 92);
     batteryState.setStartEndAngle(-180, 360);
     batteryState.setRange(0, 100);
@@ -172,7 +172,7 @@ Screen1ViewBase::Screen1ViewBase()
     rearRightWheel.setBitmap(touchgfx::Bitmap(BITMAP_TYRE_ID));
     add(rearRightWheel);
 
-    torquePower_FL.setXY(518, 203);
+    torquePower_FL.setXY(578, 203);
     torquePower_FL.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     torquePower_FL.setLinespacing(0);
     touchgfx::Unicode::snprintf(torquePower_FLBuffer1, TORQUEPOWER_FLBUFFER1_SIZE, "%s", touchgfx::TypedText(T_TORQUE).getText());
@@ -183,7 +183,36 @@ Screen1ViewBase::Screen1ViewBase()
     torquePower_FL.setTypedText(touchgfx::TypedText(T___SINGLEUSE_2X0U));
     add(torquePower_FL);
 
-    torquePower_FR.setXY(997, 203);
+    torquePower_Rm.setXY(747, 703);
+    torquePower_Rm.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    torquePower_Rm.setLinespacing(0);
+    touchgfx::Unicode::snprintf(torquePower_RmBuffer1, TORQUEPOWER_RMBUFFER1_SIZE, "%s", touchgfx::TypedText(T_TORQUE).getText());
+    torquePower_Rm.setWildcard1(torquePower_RmBuffer1);
+    touchgfx::Unicode::snprintf(torquePower_RmBuffer2, TORQUEPOWER_RMBUFFER2_SIZE, "%s", touchgfx::TypedText(T_POWER).getText());
+    torquePower_Rm.setWildcard2(torquePower_RmBuffer2);
+    torquePower_Rm.resizeToCurrentText();
+    torquePower_Rm.setTypedText(touchgfx::TypedText(T___SINGLEUSE_GYY0));
+    add(torquePower_Rm);
+
+    power_FL.setXY(578, 260);
+    power_FL.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    power_FL.setLinespacing(0);
+    Unicode::snprintf(power_FLBuffer, POWER_FL_SIZE, "%s", touchgfx::TypedText(T_TORQUE).getText());
+    power_FL.setWildcard(power_FLBuffer);
+    power_FL.resizeToCurrentText();
+    power_FL.setTypedText(touchgfx::TypedText(T___SINGLEUSE_PGVF));
+    add(power_FL);
+
+    power_FR.setXY(944, 260);
+    power_FR.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    power_FR.setLinespacing(0);
+    Unicode::snprintf(power_FRBuffer, POWER_FR_SIZE, "%s", touchgfx::TypedText(T_TORQUE).getText());
+    power_FR.setWildcard(power_FRBuffer);
+    power_FR.resizeToCurrentText();
+    power_FR.setTypedText(touchgfx::TypedText(T___SINGLEUSE_09ZA));
+    add(power_FR);
+
+    torquePower_FR.setXY(944, 203);
     torquePower_FR.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     torquePower_FR.setLinespacing(0);
     touchgfx::Unicode::snprintf(torquePower_FRBuffer1, TORQUEPOWER_FRBUFFER1_SIZE, "%s", touchgfx::TypedText(T_TORQUE).getText());
@@ -193,24 +222,6 @@ Screen1ViewBase::Screen1ViewBase()
     torquePower_FR.resizeToCurrentText();
     torquePower_FR.setTypedText(touchgfx::TypedText(T___SINGLEUSE_X3OX));
     add(torquePower_FR);
-
-    torquePower_RR.setXY(909, 723);
-    torquePower_RR.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    torquePower_RR.setLinespacing(0);
-    Unicode::snprintf(torquePower_RRBuffer, TORQUEPOWER_RR_SIZE, "%s", touchgfx::TypedText(T_TORQUE).getText());
-    torquePower_RR.setWildcard(torquePower_RRBuffer);
-    torquePower_RR.resizeToCurrentText();
-    torquePower_RR.setTypedText(touchgfx::TypedText(T___SINGLEUSE_ATAE));
-    add(torquePower_RR);
-
-    torquePower_RL.setXY(578, 723);
-    torquePower_RL.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    torquePower_RL.setLinespacing(0);
-    Unicode::snprintf(torquePower_RLBuffer, TORQUEPOWER_RL_SIZE, "%s", touchgfx::TypedText(T_TORQUE).getText());
-    torquePower_RL.setWildcard(torquePower_RLBuffer);
-    torquePower_RL.resizeToCurrentText();
-    torquePower_RL.setTypedText(touchgfx::TypedText(T___SINGLEUSE_OKGD));
-    add(torquePower_RL);
 
     steeringAngle.setPosition(826, 36, 85, 24);
     steeringAngle.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -262,7 +273,7 @@ Screen1ViewBase::Screen1ViewBase()
     optEff.setTypedText(touchgfx::TypedText(T___SINGLEUSE_DAUS));
     add(optEff);
 
-    soc.setPosition(1050, 398, 78, 21);
+    soc.setPosition(1085, 382, 78, 21);
     soc.setColor(touchgfx::Color::getColorFromRGB(255, 247, 247));
     soc.setLinespacing(0);
     socBuffer[0] = 0;
@@ -270,7 +281,7 @@ Screen1ViewBase::Screen1ViewBase()
     soc.setTypedText(touchgfx::TypedText(T___SINGLEUSE_DHY6));
     add(soc);
 
-    hv.setPosition(365, 7, 195, 31);
+    hv.setPosition(405, 12, 195, 31);
     hv.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     hv.setLinespacing(0);
     hvBuffer[0] = 0;
@@ -278,21 +289,13 @@ Screen1ViewBase::Screen1ViewBase()
     hv.setTypedText(touchgfx::TypedText(T___SINGLEUSE_IDA3));
     add(hv);
 
-    lv.setPosition(365, 46, 195, 30);
+    lv.setPosition(405, 51, 195, 30);
     lv.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     lv.setLinespacing(0);
     lvBuffer[0] = 0;
     lv.setWildcard(lvBuffer);
     lv.setTypedText(touchgfx::TypedText(T___SINGLEUSE_MY9U));
     add(lv);
-
-    airTankPress.setPosition(255, 85, 305, 31);
-    airTankPress.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    airTankPress.setLinespacing(0);
-    airTankPressBuffer[0] = 0;
-    airTankPress.setWildcard(airTankPressBuffer);
-    airTankPress.setTypedText(touchgfx::TypedText(T___SINGLEUSE_SSTA));
-    add(airTankPress);
 
     headlight.setXY(0, 667);
     headlight.setBitmap(touchgfx::Bitmap(BITMAP_HEADLIGHTSINACTIVE_ID));
@@ -348,7 +351,7 @@ Screen1ViewBase::Screen1ViewBase()
     accelChar.setTypedText(touchgfx::TypedText(T___SINGLEUSE_M2I0));
     add(accelChar);
 
-    rmPower.setPosition(578, 757, 566, 40);
+    rmPower.setPosition(666, 757, 402, 43);
     rmPower.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     rmPower.setLinespacing(0);
     rmPowerBuffer[0] = 0;
@@ -356,14 +359,45 @@ Screen1ViewBase::Screen1ViewBase()
     rmPower.setTypedText(touchgfx::TypedText(T___SINGLEUSE_UO9E));
     add(rmPower);
 
-    powertrainStatus.setXY(752, 237);
-    powertrainStatus.setBitmap(touchgfx::Bitmap(BITMAP_BATTERYREADY_ID));
-    add(powertrainStatus);
-
-    parkBrake.setXY(443, 663);
+    parkBrake.setXY(462, 667);
     parkBrake.setBitmap(touchgfx::Bitmap(BITMAP_PARKINGBRAKE_ID));
-    parkBrake.setVisible(false);
     add(parkBrake);
+
+    dcdcStatus.setXY(600, 335);
+    dcdcStatus.setBitmap(touchgfx::Bitmap(BITMAP_DCDCOFF_ID));
+    add(dcdcStatus);
+
+    airCompStatus.setXY(600, 387);
+    airCompStatus.setBitmap(touchgfx::Bitmap(BITMAP_AIRCOMPOFF_ID));
+    add(airCompStatus);
+
+    heaterStatus.setXY(600, 434);
+    heaterStatus.setBitmap(touchgfx::Bitmap(BITMAP_HEATEROFF_ID));
+    add(heaterStatus);
+
+    presFront.setPosition(704, 288, 326, 47);
+    presFront.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    presFront.setLinespacing(0);
+    presFrontBuffer1[0] = 0;
+    presFront.setWildcard1(presFrontBuffer1);
+    presFrontBuffer1[0] = 0;
+    presFront.setWildcard2(presFrontBuffer2);
+    presFront.setTypedText(touchgfx::TypedText(T___SINGLEUSE_84QJ));
+    add(presFront);
+
+    presRear.setPosition(706, 533, 326, 48);
+    presRear.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    presRear.setLinespacing(0);
+    presRearBuffer1[0] = 0;
+    presRear.setWildcard1(presRearBuffer1);
+    presRearBuffer1[0] = 0;
+    presRear.setWildcard2(presRearBuffer2);
+    presRear.setTypedText(touchgfx::TypedText(T___SINGLEUSE_NXN2));
+    add(presRear);
+
+    powerTrainStatus.setXY(802, 380);
+    powerTrainStatus.setBitmap(touchgfx::Bitmap(BITMAP_PTSTATUSNOTREADY_ID));
+    add(powerTrainStatus);
 }
 
 Screen1ViewBase::~Screen1ViewBase()

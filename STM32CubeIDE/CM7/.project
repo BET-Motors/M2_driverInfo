@@ -792,6 +792,26 @@
 			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_accelPedal_fill.cpp</locationURI>
 		</link>
 		<link>
+			<name>Application/User/generated/image_airCompError.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_airCompError.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_airCompNormal.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_airCompNormal.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_airCompOff.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_airCompOff.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_airCompPrescharge.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_airCompPrescharge.cpp</locationURI>
+		</link>
+		<link>
 			<name>Application/User/generated/image_batterSOC_bg.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_batterSOC_bg.cpp</locationURI>
@@ -800,21 +820,6 @@
 			<name>Application/User/generated/image_batterSOC_fill.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_batterSOC_fill.cpp</locationURI>
-		</link>
-		<link>
-			<name>Application/User/generated/image_batteryNotReady.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_batteryNotReady.cpp</locationURI>
-		</link>
-		<link>
-			<name>Application/User/generated/image_batteryReady.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_batteryReady.cpp</locationURI>
-		</link>
-		<link>
-			<name>Application/User/generated/image_bg.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_bg.cpp</locationURI>
 		</link>
 		<link>
 			<name>Application/User/generated/image_brakePedal_bg.cpp</name>
@@ -830,6 +835,26 @@
 			<name>Application/User/generated/image_brakingIcon.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_brakingIcon.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_dcdcError.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_dcdcError.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_dcdcNormal.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_dcdcNormal.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_dcdcOff.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_dcdcOff.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_dcdcPrecharge.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_dcdcPrecharge.cpp</locationURI>
 		</link>
 		<link>
 			<name>Application/User/generated/image_guage.cpp</name>
@@ -855,6 +880,26 @@
 			<name>Application/User/generated/image_headlightsInactive.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_headlightsInactive.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_heaterFault.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_heaterFault.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_heaterOff.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_heaterOff.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_heaterOn.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_heaterOn.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_heaterPrecharge.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_heaterPrecharge.cpp</locationURI>
 		</link>
 		<link>
 			<name>Application/User/generated/image_highBeam.cpp</name>
@@ -897,11 +942,6 @@
 			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_milInactive.cpp</locationURI>
 		</link>
 		<link>
-			<name>Application/User/generated/image_needle.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_needle.cpp</locationURI>
-		</link>
-		<link>
 			<name>Application/User/generated/image_parkingBrake.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_parkingBrake.cpp</locationURI>
@@ -922,9 +962,14 @@
 			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_posLightsInactive.cpp</locationURI>
 		</link>
 		<link>
-			<name>Application/User/generated/image_rearTyre.cpp</name>
+			<name>Application/User/generated/image_ptReady.cpp</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_rearTyre.cpp</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_ptReady.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_ptStatusNotReady.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/CM7/TouchGFX/generated/images/src/image_ptStatusNotReady.cpp</locationURI>
 		</link>
 		<link>
 			<name>Application/User/generated/image_rightIndicator_lit.cpp</name>

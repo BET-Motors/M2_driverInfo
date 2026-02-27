@@ -113,8 +113,8 @@
             "Name": "range",
             "X": 10,
             "Y": 8,
-            "Width": 259,
-            "Height": 30,
+            "Width": 326,
+            "Height": 38,
             "TextId": "__SingleUse_RXWM",
             "TextRotation": "0",
             "Color": {
@@ -132,7 +132,7 @@
             "Name": "odo",
             "X": 10,
             "Y": 46,
-            "Width": 245,
+            "Width": 346,
             "Height": 30,
             "TextId": "__SingleUse_7ULC",
             "TextRotation": "0",
@@ -209,8 +209,8 @@
           {
             "Type": "Gauge",
             "Name": "batteryState",
-            "X": 997,
-            "Y": 337,
+            "X": 1032,
+            "Y": 321,
             "Width": 184,
             "Height": 184,
             "FileNameBackground": "batterSOC_bg.png",
@@ -301,9 +301,9 @@
           {
             "Type": "TextArea",
             "Name": "torquePower_FL",
-            "X": 518,
+            "X": 578,
             "Y": 203,
-            "Width": 235,
+            "Width": 243,
             "Height": 48,
             "TextId": "__SingleUse_2X0U",
             "TextRotation": "0",
@@ -326,12 +326,12 @@
           },
           {
             "Type": "TextArea",
-            "Name": "torquePower_FR",
-            "X": 997,
-            "Y": 203,
-            "Width": 235,
+            "Name": "torquePower_Rm",
+            "X": 747,
+            "Y": 703,
+            "Width": 243,
             "Height": 48,
-            "TextId": "__SingleUse_X3OX",
+            "TextId": "__SingleUse_GYY0",
             "TextRotation": "0",
             "Color": {
               "Red": 255,
@@ -352,12 +352,12 @@
           },
           {
             "Type": "TextArea",
-            "Name": "torquePower_RR",
-            "X": 909,
-            "Y": 723,
-            "Width": 235,
+            "Name": "power_FL",
+            "X": 578,
+            "Y": 260,
+            "Width": 210,
             "Height": 24,
-            "TextId": "__SingleUse_ATAE",
+            "TextId": "__SingleUse_PGVF",
             "TextRotation": "0",
             "Color": {
               "Red": 255,
@@ -373,12 +373,12 @@
           },
           {
             "Type": "TextArea",
-            "Name": "torquePower_RL",
-            "X": 578,
-            "Y": 723,
-            "Width": 235,
+            "Name": "power_FR",
+            "X": 944,
+            "Y": 260,
+            "Width": 210,
             "Height": 24,
-            "TextId": "__SingleUse_OKGD",
+            "TextId": "__SingleUse_09ZA",
             "TextRotation": "0",
             "Color": {
               "Red": 255,
@@ -388,6 +388,32 @@
             "AutoSize": true,
             "Wildcard1": {
               "TextId": "torque",
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "torquePower_FR",
+            "X": 944,
+            "Y": 203,
+            "Width": 248,
+            "Height": 48,
+            "TextId": "__SingleUse_X3OX",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "torque",
+              "UseBuffer": true,
+              "BufferSize": 10
+            },
+            "Wildcard2": {
+              "TextId": "power",
               "UseBuffer": true,
               "BufferSize": 10
             }
@@ -510,8 +536,8 @@
           {
             "Type": "TextArea",
             "Name": "soc",
-            "X": 1050,
-            "Y": 398,
+            "X": 1085,
+            "Y": 382,
             "Width": 78,
             "Height": 21,
             "TextId": "__SingleUse_DHY6",
@@ -529,8 +555,8 @@
           {
             "Type": "TextArea",
             "Name": "hv",
-            "X": 365,
-            "Y": 7,
+            "X": 405,
+            "Y": 12,
             "Width": 195,
             "Height": 31,
             "TextId": "__SingleUse_IDA3",
@@ -548,30 +574,11 @@
           {
             "Type": "TextArea",
             "Name": "lv",
-            "X": 365,
-            "Y": 46,
+            "X": 405,
+            "Y": 51,
             "Width": 195,
             "Height": 30,
             "TextId": "__SingleUse_MY9U",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "Wildcard1": {
-              "UseBuffer": true,
-              "BufferSize": 8
-            }
-          },
-          {
-            "Type": "TextArea",
-            "Name": "airTankPress",
-            "X": 255,
-            "Y": 85,
-            "Width": 305,
-            "Height": 31,
-            "TextId": "__SingleUse_SSTA",
             "TextRotation": "0",
             "Color": {
               "Red": 255,
@@ -708,10 +715,10 @@
           {
             "Type": "TextArea",
             "Name": "rmPower",
-            "X": 578,
+            "X": 666,
             "Y": 757,
-            "Width": 566,
-            "Height": 40,
+            "Width": 402,
+            "Height": 43,
             "TextId": "__SingleUse_UO9E",
             "TextRotation": "0",
             "Color": {
@@ -726,22 +733,94 @@
           },
           {
             "Type": "Image",
-            "Name": "powertrainStatus",
-            "X": 752,
-            "Y": 237,
-            "Width": 233,
-            "Height": 350,
-            "RelativeFilename": "batteryReady.png"
+            "Name": "parkBrake",
+            "X": 462,
+            "Y": 667,
+            "Width": 120,
+            "Height": 120,
+            "RelativeFilename": "parkingBrake.png"
           },
           {
             "Type": "Image",
-            "Name": "parkBrake",
-            "X": 443,
-            "Y": 663,
-            "Width": 120,
-            "Height": 120,
-            "Visible": false,
-            "RelativeFilename": "parkingBrake.png"
+            "Name": "dcdcStatus",
+            "X": 600,
+            "Y": 335,
+            "Width": 81,
+            "Height": 31,
+            "RelativeFilename": "dcdcOff.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "airCompStatus",
+            "X": 600,
+            "Y": 387,
+            "Width": 81,
+            "Height": 31,
+            "RelativeFilename": "airCompOff.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "heaterStatus",
+            "X": 600,
+            "Y": 434,
+            "Width": 81,
+            "Height": 31,
+            "RelativeFilename": "heaterOff.png"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "presFront",
+            "X": 704,
+            "Y": 288,
+            "Width": 326,
+            "Height": 47,
+            "TextId": "__SingleUse_84QJ",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Wildcard1": {
+              "UseBuffer": true,
+              "BufferSize": 10
+            },
+            "Wildcard2": {
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "presRear",
+            "X": 706,
+            "Y": 533,
+            "Width": 326,
+            "Height": 48,
+            "TextId": "__SingleUse_NXN2",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Wildcard1": {
+              "UseBuffer": true,
+              "BufferSize": 10
+            },
+            "Wildcard2": {
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
+          },
+          {
+            "Type": "Image",
+            "Name": "powerTrainStatus",
+            "X": 802,
+            "Y": 380,
+            "Width": 131,
+            "Height": 41,
+            "RelativeFilename": "ptStatusNotReady.png"
           }
         ],
         "Interactions": []
