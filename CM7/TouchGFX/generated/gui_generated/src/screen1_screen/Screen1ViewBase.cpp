@@ -127,7 +127,7 @@ Screen1ViewBase::Screen1ViewBase()
     batteryState.setBackground(touchgfx::Bitmap(BITMAP_BATTERSOC_BG_ID));
     batteryState.setPosition(1032, 321, 184, 184);
     batteryState.setCenter(92, 92);
-    batteryState.setStartEndAngle(-180, 360);
+    batteryState.setStartEndAngle(-120, 121);
     batteryState.setRange(0, 100);
     batteryState.setValue(0);
     batteryState.setEasingEquation(touchgfx::EasingEquations::linearEaseIn);

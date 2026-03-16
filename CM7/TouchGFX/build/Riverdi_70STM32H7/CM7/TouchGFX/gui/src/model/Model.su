@@ -8,4 +8,4 @@ CM7/TouchGFX/gui/src/model/Model.cpp:281:6:bool Model::parsemtc1(CAN_Raw_Msg_t, 
 CM7/TouchGFX/gui/src/model/Model.cpp:317:6:bool Model::parsemtc2(CAN_Raw_Msg_t, Motor_And_Torque_Control_2_t*)	32	static
 CM7/TouchGFX/gui/src/model/Model.cpp:353:6:bool Model::parseEffPerf(CAN_Raw_Msg_t, Efficiency_Performance_1_t*)	40	static
 CM7/TouchGFX/gui/src/model/Model.cpp:405:6:bool Model::parseAuxStates(CAN_Raw_Msg_t, Auxiliary_States_LV_SOC_t*)	32	static
-CM7/TouchGFX/gui/src/model/Model.cpp:9:6:void Model::tick()	80	static
+CM7/TouchGFX/gui/src/model/Model.cpp:9:6:void Model::tick()	64	static

@@ -30,16 +30,14 @@ extern "C" {
  * Standardized using typedefs.
  */
 
-#include <stdint.h>
-
 // Bucket: Driver Input & Vehicle Control
 // CAN ID: 0x10000001
 typedef struct
 {
     uint32_t Acc_Ped_Pos;
     uint32_t Brk_Ped_Pos;
-    uint32_t PRND_State;
-    uint32_t Drv_Program;
+    uint32_t PRND_State; // not showing: Problem on manuelle side
+    uint32_t Drv_Program; // VCU side
     float StWhl_Angl_Act;
     float Whl_Angl_Act;
 } DriverInputAndVehicleControl_t;
@@ -61,20 +59,23 @@ typedef struct
     uint8_t Turn_Indicator_State;
     uint8_t HVDisconnect_Press;
     uint8_t Emergency_Press;
+    uint8_t Vehicle_State;
+    // add the remaining fields
 } PowertrainStatusAndReadiness_t;
 
+// CAN ID: 0x10000009
 typedef struct {
-    uint32_t Pres_Susp_Front;
-    uint32_t Pres_Susp_Rear;
-    uint32_t Pres_Brk_Front;
-    uint32_t Pres_Brk_Rear;
+    uint8_t Pres_Susp_Front;
+    uint8_t Pres_Susp_Rear;
+    uint8_t Pres_Brk_Front;
+    uint8_t Pres_Brk_Rear;
     uint8_t LowBeam_St;
     uint8_t HighBeam_St;
     uint8_t PosLight_St;
     uint8_t IntLight_St;
-    uint32_t Pwr_Act_MotRM;
-    uint32_t Pwr_Act_MotFL;
-    uint32_t Pwr_Act_MotFR;
+    uint16_t Pwr_Act_MotRM;
+    uint16_t Pwr_Act_MotFL;
+    uint16_t Pwr_Act_MotFR;
 } Press_Hydraulic_Light_PowerTrain_t;
 
 // CAN ID: 0x10000004
@@ -86,11 +87,11 @@ typedef struct {
 } Motor_And_Torque_Control_1_t;
 
 // CAN ID: 0x10000005
-typedef struct {
-    float Trq_Act_Wheel_RM;
-    float Trq_Req_Wheel_RM;
-    float Pwr_Disp;
-    float Trq_Act_Sys;
+typedef struct { // wrong
+    uint16_t Trq_Act_Wheel_RM; // wrong
+    uint16_t Trq_Req_Wheel_RM; // wrong
+    uint16_t Pwr_Disp;
+    uint16_t Trq_Act_Sys;
 } Motor_And_Torque_Control_2_t;
 
 // CAN ID: 0x10000006
@@ -109,6 +110,7 @@ typedef struct
 {
     uint32_t Odometer;
     float Speed;
+    uint8_t RefSpdSens_Direction;
 } VehicleState1_t;
 
 typedef struct {

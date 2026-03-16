@@ -117,7 +117,7 @@ void Screen1View::showDriverControls(DriverInputAndVehicleControl_t data) {
 }
 
 void Screen1View::showSteering(DriverInputAndVehicleControl2_t data) {
-	if(data.Sbw_Rack_Pos_Req != data.Sbw_Rack_Pos_Act) {
+	if(fabs(data.Sbw_Rack_Pos_Req - data.Sbw_Rack_Pos_Act) > 0.01f) {
 		frontLeftWheel.setBitmap(BITMAP_TYRE_ID);
 	} else {
 		frontLeftWheel.setBitmap(BITMAP_TYREINCORRECT_ID);

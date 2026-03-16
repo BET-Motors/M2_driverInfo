@@ -198,6 +198,12 @@ bool Model::parseVehicleState(CAN_Raw_Msg_t rawMsg, VehicleState1_t *_vs1) {
         changed = true;
     }
 
+    rawVal = UnpackSignal(rawMsg.data, 48, 2);
+    if(_vs1->RefSpdSend_Direction != (uint8_t)rawVal) {
+        _vs1->RefSpdSend_Direction = (uint8_t)rawVal;
+        changed = true;
+    }
+
     return changed;
 }
 
