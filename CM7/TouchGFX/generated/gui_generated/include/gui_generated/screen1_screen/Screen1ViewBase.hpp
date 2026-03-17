@@ -13,6 +13,7 @@
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/widgets/AnimationTextureMapper.hpp>
 #include <touchgfx/widgets/Image.hpp>
+#include <touchgfx/widgets/TextArea.hpp>
 
 class Screen1ViewBase : public touchgfx::View<Screen1Presenter>
 {
@@ -32,10 +33,10 @@ protected:
     touchgfx::Box __background;
     touchgfx::Gauge speedo;
     touchgfx::PainterRGB565Bitmap speedoPainter;
-    touchgfx::Gauge accelPedal;
-    touchgfx::PainterRGB565Bitmap accelPedalPainter;
     touchgfx::Gauge brakePedal;
     touchgfx::PainterRGB565Bitmap brakePedalPainter;
+    touchgfx::Gauge accelPedal;
+    touchgfx::PainterRGB565Bitmap accelPedalPainter;
     touchgfx::TextAreaWithOneWildcard range;
     touchgfx::TextAreaWithOneWildcard odo;
     touchgfx::TextAreaWithOneWildcard driveMode;
@@ -80,6 +81,8 @@ protected:
     touchgfx::TextAreaWithTwoWildcards presFront;
     touchgfx::TextAreaWithTwoWildcards presRear;
     touchgfx::Image powerTrainStatus;
+    touchgfx::TextArea textArea1;
+    touchgfx::TextAreaWithOneWildcard accPedalPos;
 
     /*
      * Wildcard Buffers
@@ -142,6 +145,8 @@ protected:
     touchgfx::Unicode::UnicodeChar presRearBuffer1[PRESREARBUFFER1_SIZE];
     static const uint16_t PRESREARBUFFER2_SIZE = 10;
     touchgfx::Unicode::UnicodeChar presRearBuffer2[PRESREARBUFFER2_SIZE];
+    static const uint16_t ACCPEDALPOS_SIZE = 5;
+    touchgfx::Unicode::UnicodeChar accPedalPosBuffer[ACCPEDALPOS_SIZE];
 
 private:
 

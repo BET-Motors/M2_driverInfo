@@ -16,7 +16,7 @@ Screen1ViewBase::Screen1ViewBase()
     add(__background);
 
     speedo.setBackground(touchgfx::Bitmap(BITMAP_GUAGE_ID));
-    speedo.setPosition(120, 248, 336, 336);
+    speedo.setPosition(120, 233, 336, 336);
     speedo.setCenter(168, 168);
     speedo.setStartEndAngle(-135, 121);
     speedo.setRange(0, 150);
@@ -34,30 +34,10 @@ Screen1ViewBase::Screen1ViewBase()
     speedo.setArcPosition(0, 0, 336, 336);
     add(speedo);
 
-    accelPedal.setBackground(touchgfx::Bitmap(BITMAP_ACCELPEDAL_BG_ID));
-    accelPedal.setPosition(0, 296, 240, 240);
-    accelPedal.setCenter(120, 120);
-    accelPedal.setStartEndAngle(-180, 0);
-    accelPedal.setRange(0, 100);
-    accelPedal.setValue(0);
-    accelPedal.setEasingEquation(touchgfx::EasingEquations::linearEaseIn);
-    accelPedal.setNeedle(BITMAP_PIXELNEEDLE_ID, 7, 67);
-    accelPedal.setMovingNeedleRenderingAlgorithm(touchgfx::TextureMapper::BILINEAR_INTERPOLATION);
-    accelPedal.setSteadyNeedleRenderingAlgorithm(touchgfx::TextureMapper::BILINEAR_INTERPOLATION);
-    accelPedal.setArcVisible();
-    accelPedalPainter.setBitmap(touchgfx::Bitmap(BITMAP_ACCELPEDAL_FILL_ID));
-    accelPedal.getArc().setPainter(accelPedalPainter);
-    accelPedal.getArc().setRadius(137);
-    accelPedal.getArc().setLineWidth(136);
-    accelPedal.getArc().setCapPrecision(180);
-    accelPedal.setArcPosition(0, 0, 240, 240);
-    accelPedal.putArcOnTop();
-    add(accelPedal);
-
-    brakePedal.setBackground(touchgfx::Bitmap(BITMAP_BRAKEPEDAL_BG_ID));
-    brakePedal.setPosition(336, 296, 240, 240);
+    brakePedal.setBackground(touchgfx::Bitmap(BITMAP_ACCELPEDAL_BG_ID));
+    brakePedal.setPosition(0, 281, 240, 240);
     brakePedal.setCenter(120, 120);
-    brakePedal.setStartEndAngle(180, 0);
+    brakePedal.setStartEndAngle(-180, 0);
     brakePedal.setRange(0, 100);
     brakePedal.setValue(0);
     brakePedal.setEasingEquation(touchgfx::EasingEquations::linearEaseIn);
@@ -65,13 +45,33 @@ Screen1ViewBase::Screen1ViewBase()
     brakePedal.setMovingNeedleRenderingAlgorithm(touchgfx::TextureMapper::BILINEAR_INTERPOLATION);
     brakePedal.setSteadyNeedleRenderingAlgorithm(touchgfx::TextureMapper::BILINEAR_INTERPOLATION);
     brakePedal.setArcVisible();
-    brakePedalPainter.setBitmap(touchgfx::Bitmap(BITMAP_BRAKEPEDAL_FILL_ID));
+    brakePedalPainter.setBitmap(touchgfx::Bitmap(BITMAP_ACCELPEDAL_FILL_ID));
     brakePedal.getArc().setPainter(brakePedalPainter);
     brakePedal.getArc().setRadius(137);
-    brakePedal.getArc().setLineWidth(139);
+    brakePedal.getArc().setLineWidth(136);
     brakePedal.getArc().setCapPrecision(180);
     brakePedal.setArcPosition(0, 0, 240, 240);
+    brakePedal.putArcOnTop();
     add(brakePedal);
+
+    accelPedal.setBackground(touchgfx::Bitmap(BITMAP_BRAKEPEDAL_BG_ID));
+    accelPedal.setPosition(336, 281, 240, 240);
+    accelPedal.setCenter(120, 120);
+    accelPedal.setStartEndAngle(180, 0);
+    accelPedal.setRange(0, 100);
+    accelPedal.setValue(0);
+    accelPedal.setEasingEquation(touchgfx::EasingEquations::linearEaseIn);
+    accelPedal.setNeedle(BITMAP_PIXELNEEDLE_ID, 7, 67);
+    accelPedal.setMovingNeedleRenderingAlgorithm(touchgfx::TextureMapper::BILINEAR_INTERPOLATION);
+    accelPedal.setSteadyNeedleRenderingAlgorithm(touchgfx::TextureMapper::BILINEAR_INTERPOLATION);
+    accelPedal.setArcVisible();
+    accelPedalPainter.setBitmap(touchgfx::Bitmap(BITMAP_BRAKEPEDAL_FILL_ID));
+    accelPedal.getArc().setPainter(accelPedalPainter);
+    accelPedal.getArc().setRadius(137);
+    accelPedal.getArc().setLineWidth(139);
+    accelPedal.getArc().setCapPrecision(180);
+    accelPedal.setArcPosition(0, 0, 240, 240);
+    add(accelPedal);
 
     range.setPosition(10, 8, 326, 38);
     range.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -89,7 +89,7 @@ Screen1ViewBase::Screen1ViewBase()
     odo.setTypedText(touchgfx::TypedText(T___SINGLEUSE_7ULC));
     add(odo);
 
-    driveMode.setPosition(212, 589, 153, 24);
+    driveMode.setPosition(20, 598, 153, 24);
     driveMode.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     driveMode.setLinespacing(0);
     driveMode.setWideTextAction(WIDE_TEXT_WORDWRAP);
@@ -156,7 +156,7 @@ Screen1ViewBase::Screen1ViewBase()
     steeringWheel.setRenderingAlgorithm(touchgfx::TextureMapper::NEAREST_NEIGHBOR);
     add(steeringWheel);
 
-    textAreaPrnd.setPosition(262, 516, 52, 41);
+    textAreaPrnd.setPosition(262, 501, 52, 41);
     textAreaPrnd.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     textAreaPrnd.setLinespacing(0);
     textAreaPrndBuffer[0] = 0;
@@ -247,11 +247,11 @@ Screen1ViewBase::Screen1ViewBase()
     wheelAngle_FR.setTypedText(touchgfx::TypedText(T___SINGLEUSE_AP7Y));
     add(wheelAngle_FR);
 
-    accelIcon.setXY(456, 385);
+    accelIcon.setXY(456, 370);
     accelIcon.setBitmap(touchgfx::Bitmap(BITMAP_ACCELICON_ID));
     add(accelIcon);
 
-    brakeIcon.setXY(58, 385);
+    brakeIcon.setXY(58, 370);
     brakeIcon.setBitmap(touchgfx::Bitmap(BITMAP_BRAKINGICON_ID));
     add(brakeIcon);
 
@@ -301,7 +301,7 @@ Screen1ViewBase::Screen1ViewBase()
     headlight.setBitmap(touchgfx::Bitmap(BITMAP_HEADLIGHTSINACTIVE_ID));
     add(headlight);
 
-    linearSpeed.setPosition(212, 334, 153, 32);
+    linearSpeed.setPosition(212, 319, 153, 32);
     linearSpeed.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     linearSpeed.setLinespacing(0);
     linearSpeedBuffer[0] = 0;
@@ -317,15 +317,15 @@ Screen1ViewBase::Screen1ViewBase()
     driveTrainStatus.setTypedText(touchgfx::TypedText(T___SINGLEUSE_T4E1));
     add(driveTrainStatus);
 
-    leftIndicator.setXY(48, 271);
+    leftIndicator.setXY(48, 256);
     leftIndicator.setBitmap(touchgfx::Bitmap(BITMAP_LEFTINDICATOR_UNLIT_ID));
     add(leftIndicator);
 
-    rightIndicator.setXY(456, 271);
+    rightIndicator.setXY(456, 256);
     rightIndicator.setBitmap(touchgfx::Bitmap(BITMAP_RIGHTINDICATOR_UNLIT_ID));
     add(rightIndicator);
 
-    mil.setXY(0, 536);
+    mil.setXY(1115, 584);
     mil.setBitmap(touchgfx::Bitmap(BITMAP_MILINACTIVE_ID));
     add(mil);
 
@@ -337,11 +337,11 @@ Screen1ViewBase::Screen1ViewBase()
     intLight.setBitmap(touchgfx::Bitmap(BITMAP_INTLIGHTINACTIVE_ID));
     add(intLight);
 
-    hazardLight.setXY(228, 151);
+    hazardLight.setXY(228, 136);
     hazardLight.setBitmap(touchgfx::Bitmap(BITMAP_HAZARDLIGHTINACTIVE_ID));
     add(hazardLight);
 
-    accelChar.setPosition(398, 571, 263, 54);
+    accelChar.setPosition(183, 593, 263, 54);
     accelChar.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     accelChar.setLinespacing(0);
     accelCharBuffer1[0] = 0;
@@ -398,6 +398,20 @@ Screen1ViewBase::Screen1ViewBase()
     powerTrainStatus.setXY(802, 380);
     powerTrainStatus.setBitmap(touchgfx::Bitmap(BITMAP_PTSTATUSNOTREADY_ID));
     add(powerTrainStatus);
+
+    textArea1.setXY(1034, 505);
+    textArea1.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    textArea1.setLinespacing(0);
+    textArea1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_TF5L));
+    add(textArea1);
+
+    accPedalPos.setPosition(398, 554, 249, 30);
+    accPedalPos.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    accPedalPos.setLinespacing(0);
+    accPedalPosBuffer[0] = 0;
+    accPedalPos.setWildcard(accPedalPosBuffer);
+    accPedalPos.setTypedText(touchgfx::TypedText(T___SINGLEUSE_KQMO));
+    add(accPedalPos);
 }
 
 Screen1ViewBase::~Screen1ViewBase()

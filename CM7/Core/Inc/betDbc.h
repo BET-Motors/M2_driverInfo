@@ -36,7 +36,7 @@ typedef struct
 {
     uint32_t Acc_Ped_Pos;
     uint32_t Brk_Ped_Pos;
-    uint32_t PRND_State; // not showing: Problem on manuelle side
+    uint8_t PRND_State; // not showing: Problem on manuelle side
     uint32_t Drv_Program; // VCU side
     float StWhl_Angl_Act;
     float Whl_Angl_Act;
@@ -60,7 +60,9 @@ typedef struct
     uint8_t HVDisconnect_Press;
     uint8_t Emergency_Press;
     uint8_t Vehicle_State;
-    // add the remaining fields
+    uint16_t HV_Voltage;
+    uint16_t HV_Current;
+    uint16_t HV_Power;
 } PowertrainStatusAndReadiness_t;
 
 // CAN ID: 0x10000009

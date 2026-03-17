@@ -6,6 +6,12 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_KQMO" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Acc. Pedal:  &lt;value&gt; %</Translation>
+      </Text>
+      <Text Id="__SingleUse_TF5L" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">BATTERY SOC</Translation>
+      </Text>
       <Text Id="__SingleUse_NXN2" Alignment="Left" TypographyId="Typography1_1">
         <Translation Language="GB">SUS PRESS REAR: &lt;value&gt; bar&#10;BRK PRESS REAR: &lt;value&gt; bar</Translation>
       </Text>

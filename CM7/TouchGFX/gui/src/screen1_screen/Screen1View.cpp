@@ -9,8 +9,6 @@ Screen1View::Screen1View()
 void Screen1View::setupScreen()
 {
     Screen1ViewBase::setupScreen();
-//    Unicode::snprintf(socBuffer, SOC_SIZE, "%d", 0);
-//	soc.invalidate();
     Unicode::snprintf(textAreaPrndBuffer, TEXTAREAPRND_SIZE, "%c", 'P');
     textAreaPrnd.invalidate();
 	Unicode::snprintf(rangeBuffer, RANGE_SIZE, "%d", 0);
@@ -45,6 +43,8 @@ void Screen1View::setupScreen()
 void Screen1View::showDriverControls(DriverInputAndVehicleControl_t data) {
 	accelPedal.setValue(data.Acc_Ped_Pos);
 	accelPedal.invalidate();
+	Unicode::snprintf(accPedalPosBuffer, ACCPEDALPOS_SIZE, "%d", data.Acc_Ped_Pos);
+	accPedalPos.invalidate();
 	brakePedal.setValue(data.Brk_Ped_Pos);
 	brakePedal.invalidate();
 
@@ -114,14 +114,20 @@ void Screen1View::showDriverControls(DriverInputAndVehicleControl_t data) {
 	wheelAngle_FL.invalidate();
 	Unicode::snprintfFloat(wheelAngle_FRBuffer, WHEELANGLE_FR_SIZE, "%.1f",  data.Whl_Angl_Act);
 	wheelAngle_FR.invalidate();
-}
 
-void Screen1View::showSteering(DriverInputAndVehicleControl2_t data) {
-	if(fabs(data.Sbw_Rack_Pos_Req - data.Sbw_Rack_Pos_Act) > 0.01f) {
+	if(fabs(steeringRad - wheelRad) < 0.01f) {
 		frontLeftWheel.setBitmap(BITMAP_TYRE_ID);
 	} else {
 		frontLeftWheel.setBitmap(BITMAP_TYREINCORRECT_ID);
 	}
+}
+
+void Screen1View::showSteering(DriverInputAndVehicleControl2_t data) {
+	/* if(fabs(data.Sbw_Rack_Pos_Req - data.Sbw_Rack_Pos_Act) < 0.01f) {
+		frontLeftWheel.setBitmap(BITMAP_TYRE_ID);
+	} else {
+		frontLeftWheel.setBitmap(BITMAP_TYREINCORRECT_ID);
+	} */
 }
 
 void Screen1View::showPowertrainStatus(PowertrainStatusAndReadiness_t data) {
@@ -201,6 +207,9 @@ void Screen1View::showPowertrainStatus(PowertrainStatusAndReadiness_t data) {
 			driveTrainStatus.invalidate();
 			break;
 	}
+
+	Unicode::snprintf(hvBuffer, HV_SIZE, "%d", data.HV_Voltage);
+	hv.invalidate();
 }
 
 void Screen1View::showMotorTorque1(Motor_And_Torque_Control_1_t data) {
@@ -336,8 +345,8 @@ void Screen1View::showAux(Auxiliary_States_LV_SOC_t data) {
 	soc.invalidate();
 	batteryState.invalidate();
 
-	Unicode::snprintf(hvBuffer, HV_SIZE, "%d", data.DCDC_HV_Voltage);
-	hv.invalidate();
+	/* Unicode::snprintf(hvBuffer, HV_SIZE, "%d", data.DCDC_HV_Voltage);
+	hv.invalidate(); */
 	Unicode::snprintf(lvBuffer, LV_SIZE, "%d", data.LV_Voltage);
 	lv.invalidate();
 }

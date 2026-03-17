@@ -1,11 +1,11 @@
 CM7/TouchGFX/gui/src/model/Model.cpp:4:1:Model::Model()	0	static
 CM7/TouchGFX/gui/src/model/Model.cpp:62:6:bool Model::parseDriverInput1(CAN_Raw_Msg_t, DriverInputAndVehicleControl_t*)	40	static
 CM7/TouchGFX/gui/src/model/Model.cpp:111:6:bool Model::parsePtStatus(CAN_Raw_Msg_t, PowertrainStatusAndReadiness_t*)	32	static
-CM7/TouchGFX/gui/src/model/Model.cpp:159:6:bool Model::parseDriverInput2(CAN_Raw_Msg_t, DriverInputAndVehicleControl2_t*)	40	static
-CM7/TouchGFX/gui/src/model/Model.cpp:182:6:bool Model::parseVehicleState(CAN_Raw_Msg_t, VehicleState1_t*)	32	static
-CM7/TouchGFX/gui/src/model/Model.cpp:204:6:bool Model::parsePressHydLightPt(CAN_Raw_Msg_t, Press_Hydraulic_Light_PowerTrain_t*)	32	static
-CM7/TouchGFX/gui/src/model/Model.cpp:281:6:bool Model::parsemtc1(CAN_Raw_Msg_t, Motor_And_Torque_Control_1_t*)	32	static
-CM7/TouchGFX/gui/src/model/Model.cpp:317:6:bool Model::parsemtc2(CAN_Raw_Msg_t, Motor_And_Torque_Control_2_t*)	32	static
-CM7/TouchGFX/gui/src/model/Model.cpp:353:6:bool Model::parseEffPerf(CAN_Raw_Msg_t, Efficiency_Performance_1_t*)	40	static
-CM7/TouchGFX/gui/src/model/Model.cpp:405:6:bool Model::parseAuxStates(CAN_Raw_Msg_t, Auxiliary_States_LV_SOC_t*)	32	static
+CM7/TouchGFX/gui/src/model/Model.cpp:177:6:bool Model::parseDriverInput2(CAN_Raw_Msg_t, DriverInputAndVehicleControl2_t*)	40	static
+CM7/TouchGFX/gui/src/model/Model.cpp:200:6:bool Model::parseVehicleState(CAN_Raw_Msg_t, VehicleState1_t*)	32	static
+CM7/TouchGFX/gui/src/model/Model.cpp:229:6:bool Model::parsePressHydLightPt(CAN_Raw_Msg_t, Press_Hydraulic_Light_PowerTrain_t*)	32	static
+CM7/TouchGFX/gui/src/model/Model.cpp:306:6:bool Model::parsemtc1(CAN_Raw_Msg_t, Motor_And_Torque_Control_1_t*)	32	static
+CM7/TouchGFX/gui/src/model/Model.cpp:342:6:bool Model::parsemtc2(CAN_Raw_Msg_t, Motor_And_Torque_Control_2_t*)	32	static
+CM7/TouchGFX/gui/src/model/Model.cpp:382:6:bool Model::parseEffPerf(CAN_Raw_Msg_t, Efficiency_Performance_1_t*)	40	static
+CM7/TouchGFX/gui/src/model/Model.cpp:434:6:bool Model::parseAuxStates(CAN_Raw_Msg_t, Auxiliary_States_LV_SOC_t*)	32	static
 CM7/TouchGFX/gui/src/model/Model.cpp:9:6:void Model::tick()	64	static

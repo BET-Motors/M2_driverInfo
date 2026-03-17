@@ -1,18 +1,18 @@
 CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:104:18:virtual void touchgfx::Screen::afterTransition()	0	static
 CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:154:18:virtual void touchgfx::Screen::handleKeyEvent(uint8_t)	0	static
-CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:355:6:virtual void Screen1View::tearDownScreen()	0	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:364:6:virtual void Screen1View::tearDownScreen()	0	static
 CM7/TouchGFX/gui/include/gui/screen1_screen/Screen1View.hpp:13:13:Screen1View::~Screen1View()	8	static
 CM7/TouchGFX/gui/include/gui/screen1_screen/Screen1View.hpp:13:13:virtual Screen1View::~Screen1View()	8	static
 CM7/Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextureMapper.hpp:216:18:virtual void touchgfx::TextureMapper::updateZAngle(float)	0	static
 CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:5:1:Screen1View::Screen1View()	8	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:125:6:void Screen1View::showSteering(DriverInputAndVehicleControl2_t)	8	static
 CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:9:6:virtual void Screen1View::setupScreen()	16	static
-CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:206:6:void Screen1View::showMotorTorque1(Motor_And_Torque_Control_1_t)	24	static
-CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:216:6:void Screen1View::showMotorTorque2(Motor_And_Torque_Control_2_t)	40	static
-CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:222:6:void Screen1View::showEfficiency(Efficiency_Performance_1_t)	24	static
-CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:45:6:void Screen1View::showDriverControls(DriverInputAndVehicleControl_t)	40	static
-CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:345:6:void Screen1View::showVehicleState(VehicleState1_t)	40	static
-CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:119:6:void Screen1View::showSteering(DriverInputAndVehicleControl2_t)	24	static
-CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:127:6:void Screen1View::showPowertrainStatus(PowertrainStatusAndReadiness_t)	32	static
-CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:236:6:void Screen1View::showPressHydLightPt(Press_Hydraulic_Light_PowerTrain_t)	32	static
-CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:276:6:void Screen1View::showAux(Auxiliary_States_LV_SOC_t)	24	static
-CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:448:6:virtual void Screen1View::handleTickEvent()	32	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:215:6:void Screen1View::showMotorTorque1(Motor_And_Torque_Control_1_t)	24	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:225:6:void Screen1View::showMotorTorque2(Motor_And_Torque_Control_2_t)	24	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:231:6:void Screen1View::showEfficiency(Efficiency_Performance_1_t)	24	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:354:6:void Screen1View::showVehicleState(VehicleState1_t)	48	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:43:6:void Screen1View::showDriverControls(DriverInputAndVehicleControl_t)	40	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:133:6:void Screen1View::showPowertrainStatus(PowertrainStatusAndReadiness_t)	24	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:245:6:void Screen1View::showPressHydLightPt(Press_Hydraulic_Light_PowerTrain_t)	32	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:285:6:void Screen1View::showAux(Auxiliary_States_LV_SOC_t)	24	static
+CM7/TouchGFX/gui/src/screen1_screen/Screen1View.cpp:457:6:virtual void Screen1View::handleTickEvent()	32	static

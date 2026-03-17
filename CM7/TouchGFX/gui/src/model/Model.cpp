@@ -80,8 +80,8 @@ bool Model::parseDriverInput1(CAN_Raw_Msg_t rawMsg, DriverInputAndVehicleControl
 
     // PRND_State (Start: 16, Len: 3)
     rawVal = UnpackSignal(rawMsg.data, 16, 3);
-    if(_divc->PRND_State != (uint32_t)rawVal) {
-        _divc->PRND_State = (uint32_t)rawVal;
+    if(_divc->PRND_State != (uint8_t)rawVal) {
+        _divc->PRND_State = (uint8_t)rawVal;
         changed = true;
     }    
 
@@ -153,6 +153,24 @@ bool Model::parsePtStatus(CAN_Raw_Msg_t rawMsg, PowertrainStatusAndReadiness_t *
         changed = true;
     }
 
+    rawVal = UnpackSignal(rawMsg.data, 18, 12);
+    if(_ptsr->HV_Voltage != (uint16_t)rawVal) {
+        _ptsr->HV_Voltage = (uint16_t)rawVal;
+        changed = true;
+    }
+
+    rawVal = UnpackSignal(rawMsg.data, 30, 16);
+    if(_ptsr->HV_Current != (uint16_t)rawVal) {
+        _ptsr->HV_Current = (uint16_t)rawVal;
+        changed = true;
+    }
+
+    rawVal = UnpackSignal(rawMsg.data, 48, 16);
+    if(_ptsr->HV_Power != (uint16_t)rawVal) {
+        _ptsr->HV_Power = (uint16_t)rawVal;
+        changed = true;
+    }
+
     return changed;
 }
 
@@ -193,14 +211,15 @@ bool Model::parseVehicleState(CAN_Raw_Msg_t rawMsg, VehicleState1_t *_vs1) {
     // Speed (Start: 32, Len: 12)
     rawVal = UnpackSignal(rawMsg.data, 32, 12);
     rawFloat = (float)rawVal * 0.1f;
+    if(rawFloat == 0.0f) rawFloat = 0.0f;
     if(fabs(_vs1->Speed - rawFloat) > 0.1f) {
         _vs1->Speed = (float)rawVal * 0.1f;
         changed = true;
     }
 
     rawVal = UnpackSignal(rawMsg.data, 48, 2);
-    if(_vs1->RefSpdSend_Direction != (uint8_t)rawVal) {
-        _vs1->RefSpdSend_Direction = (uint8_t)rawVal;
+    if(_vs1->RefSpdSens_Direction != (uint8_t)rawVal) {
+        _vs1->RefSpdSens_Direction = (uint8_t)rawVal;
         changed = true;
     }
 
@@ -327,6 +346,7 @@ bool Model::parsemtc2(CAN_Raw_Msg_t rawMsg, Motor_And_Torque_Control_2_t *_mtc) 
 
 	rawVal = UnpackSignal(rawMsg.data, 0, 16);
 	rawVal = rawVal - 5000;
+    if(rawVal < 0) rawVal = 0;
 	if(_mtc->Trq_Act_Wheel_RM != rawVal) {
 		_mtc->Trq_Act_Wheel_RM = rawVal;
 		changed = true;
@@ -334,6 +354,7 @@ bool Model::parsemtc2(CAN_Raw_Msg_t rawMsg, Motor_And_Torque_Control_2_t *_mtc) 
 
 	rawVal = UnpackSignal(rawMsg.data, 16, 16);
 	rawVal = rawVal - 5000;
+    if(rawVal < 0) rawVal = 0;
 	if(_mtc->Trq_Req_Wheel_RM != rawVal) {
 		_mtc->Trq_Req_Wheel_RM = rawVal;
 		changed = true;
@@ -341,6 +362,7 @@ bool Model::parsemtc2(CAN_Raw_Msg_t rawMsg, Motor_And_Torque_Control_2_t *_mtc) 
 
 	rawVal = UnpackSignal(rawMsg.data, 32, 16);
 	rawVal = rawVal - 2500;
+    if(rawVal < 0) rawVal = 0;
 	if(_mtc->Pwr_Disp != rawVal) {
 		_mtc->Pwr_Disp = rawVal;
 		changed = true;
@@ -348,6 +370,7 @@ bool Model::parsemtc2(CAN_Raw_Msg_t rawMsg, Motor_And_Torque_Control_2_t *_mtc) 
 
 	rawVal = UnpackSignal(rawMsg.data, 48, 16);
 	rawVal = rawVal - 5000;
+    if(rawVal < 0) rawVal = 0;
 	if(_mtc->Trq_Act_Sys != rawVal) {
 		_mtc->Trq_Act_Sys = rawVal;
 		changed = true;
