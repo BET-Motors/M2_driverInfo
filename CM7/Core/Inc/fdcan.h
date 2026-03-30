@@ -45,6 +45,7 @@ extern osMessageQueueId_t guiMQHandle;
 void CanRecv(void *args);
 
 uint64_t UnpackSignal(const uint8_t* data, uint8_t startBit, uint8_t length);
+uint64_t UnpackSignalMotorola(const uint8_t* data, uint8_t startbit, uint8_t len);
 
 extern osMessageQueueId_t guiMQHandle;
 

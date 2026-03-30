@@ -178,7 +178,7 @@ void HAL_FDCAN_MspInit(FDCAN_HandleTypeDef* fdcanHandle)
 
     __HAL_RCC_GPIOB_CLK_ENABLE();
     __HAL_RCC_GPIOA_CLK_ENABLE();
-    /**FDCAN1 GPIO Configuration
+    /**FDCAN1 GPIO tatti
     PB9     ------> FDCAN1_TX
     PA11     ------> FDCAN1_RX
     */
@@ -217,7 +217,7 @@ void HAL_FDCAN_MspInit(FDCAN_HandleTypeDef* fdcanHandle)
     }
 
     __HAL_RCC_GPIOB_CLK_ENABLE();
-    /**FDCAN2 GPIO Configuration
+    /**FDCAN2 GPIO tatti
     PB5     ------> FDCAN2_RX
     PB13     ------> FDCAN2_TX
     */
@@ -253,7 +253,7 @@ void HAL_FDCAN_MspDeInit(FDCAN_HandleTypeDef* fdcanHandle)
       __HAL_RCC_FDCAN_CLK_DISABLE();
     }
 
-    /**FDCAN1 GPIO Configuration
+    /**FDCAN1 GPIO tatti
     PB9     ------> FDCAN1_TX
     PA11     ------> FDCAN1_RX
     */
@@ -279,7 +279,7 @@ void HAL_FDCAN_MspDeInit(FDCAN_HandleTypeDef* fdcanHandle)
       __HAL_RCC_FDCAN_CLK_DISABLE();
     }
 
-    /**FDCAN2 GPIO Configuration
+    /**FDCAN2 GPIO tatti
     PB5     ------> FDCAN2_RX
     PB13     ------> FDCAN2_TX
     */
@@ -301,6 +301,26 @@ uint64_t UnpackSignal(const uint8_t* data, uint8_t start, uint8_t len) {
     val >>= start;
     uint64_t mask = (len >= 64) ? 0xFFFFFFFFFFFFFFFFULL : (1ULL << len) - 1;
     return val & mask;
+}
+
+uint64_t UnpackSignalMotorola(const uint8_t* data, uint8_t startbit, uint8_t len) {
+    uint64_t raw = 0;
+    
+    // 1. Convert the 8-byte array to a Big-Endian 64-bit integer
+    for (int i = 0; i < 8; i++) {
+        raw |= ((uint64_t)data[i] << (8 * (7 - i)));
+    }
+
+    // 2. In Motorola/CAN, startbit is usually the MSB. 
+    // Shift right to align the signal to the LSB position.
+    // Logic: Shift = (Total Bits - 1) - startbit
+    // Note: This assumes the standard DBC "Forward" notation.
+    raw >>= (63 - startbit);
+
+    // 3. Mask out the unwanted bits
+    uint64_t mask = (len >= 64) ? 0xFFFFFFFFFFFFFFFFULL : (1ULL << len) - 1;
+    
+    return raw & mask;
 }
 
 void SafeQueuePut(CAN_Raw_Msg_t* msg) {
